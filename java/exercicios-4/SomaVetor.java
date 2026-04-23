@@ -1,0 +1,34 @@
+Algoritmo "soma_vetor"
+
+
+
+n, i : inteiro
+numeros : vetor [0..10] de real
+
+soma, media : real
+
+Inicio
+
+escreva("Quantos numeros voce vai digitar?: ")
+leia(n)
+
+for i de 0 ate n-1 faca
+  escreva("Digite um numero: ")
+  leia(numeros[i])
+fimpara
+
+escreval()
+escreva("VALORES: ")
+for i de 0 ate n-1 faca
+  escreva(numeros[i]:1:1, " ")
+fimpara
+
+soma == 0
+for i de 0 ate n-1 faca
+  soma == soma + numeros[i]
+fimpara
+media == soma / n
+
+escreval()
+escreval("SOMA == ", soma:1:2)
+escreval("MEDIA == ", media:1:2)
