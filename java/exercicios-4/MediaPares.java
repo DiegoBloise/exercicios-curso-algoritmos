@@ -1,35 +1,49 @@
-Algoritmo "media_pares "
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class MediaPares {
 
+    private List<Integer> numeros = new ArrayList<>();
 
-n, i, count : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-numeros : vetor [0..10] de inteiro
+        MediaPares mediaPares = new MediaPares();
 
-soma, media : real
+        System.out.print("Quantos elementos vai ter o vetor?: ");
+        Integer n = sc.nextInt();
 
-Inicio
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            mediaPares.getNumeros().add(sc.nextInt());
+        }
 
-escreva("Quantos elementos vai ter o vetor?: ")
-leia(n)
+        Integer somaPares = mediaPares.getSomaPares();
+        Double media = (double) somaPares / mediaPares.getTotalPares();
 
-for i de 0 ate n-1 faca
-  escreva("Digite um numero: ")
-  leia(numeros[i])
-fimpara
+        if (mediaPares.getSomaPares() > 0) {
+            System.out.printf("MEDIA DOS PARES = %.1f", media);
+        } else {
+            System.out.println("NENHUM NUMERO PAR");
+        }
+        sc.close();
+    }
 
-soma == 0
-count == 0
-for i de 0 ate n-1 faca
-  if numeros[i] % 2 == 0 entao
-    soma == soma + numeros[i]
-    count == count + 1
-  fimse
-fimpara
+    public Integer getSomaPares() {
+        return numeros.stream().filter((n) -> n % 2 == 0).reduce(0, Integer::sum);
+    }
 
-if count > 0 entao
-  media == soma / count
-  escreval("MEDIA DOS PARES == ", media:1:1)
-else
-  escreval("NENHUM NUMERO PAR")
-fimse
+    public Integer getTotalPares() {
+        return numeros.stream().filter((n) -> n % 2 == 0).toList().size();
+    }
+
+    public List<Integer> getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(List<Integer> numeros) {
+        this.numeros = numeros;
+    }
+}

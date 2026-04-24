@@ -1,23 +1,39 @@
-Algoritmo "negativos"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class Negativos {
 
+    private List<Integer> numeros = new ArrayList<>();
 
-n, i : inteiro
-numeros : vetor [0..10] de inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-Inicio
+        Negativos negativos = new Negativos();
 
-escreva("Quantos numeros voce vai digitar?: ")
-leia(n)
+        System.out.print("Quantos numeros voce vai digitar?: ");
+        Integer n = sc.nextInt();
 
-for i de 0 ate n-1 faca
-  escreva("Digite um numero: ")
-  leia(numeros[i])
-fimpara
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            negativos.getNumeros().add(sc.nextInt());
+        }
 
-escreval("NUMEROS NEGATIVOS:")
-for i de 0 ate n-1 faca
-  if numeros[i] < 0 entao
-    escreval(numeros[i])
-  fimse
-fimpara
+        System.out.println("NUMEROS NEGATIVOS: " + negativos.getNumerosNegativos().toString());
+
+        sc.close();
+    }
+
+    public List<Integer> getNumerosNegativos() {
+        return numeros.stream().filter((n) -> n < 0).toList();
+    }
+
+    public List<Integer> getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(List<Integer> numeros) {
+        this.numeros = numeros;
+    }
+}

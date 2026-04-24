@@ -1,36 +1,56 @@
-Algoritmo "acima_diagonal"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class AcimaDiagonal {
 
+    private List<List<Integer>> matriz = new ArrayList<>();
 
-  n, i, j, soma : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-  mat : vetor [0..10, 0..10] de inteiro
+        AcimaDiagonal acimaDiagonal = new AcimaDiagonal();
 
-Inicio
+        System.out.print("Qual a ordem da matriz?: ");
+        Integer n = sc.nextInt();
 
-  escreva("Qual a ordem da matriz?: ")
-  leia(n)
+        System.out.println();
+        for (int i = 0; i < n; i++) {
+            acimaDiagonal.getMatriz().add(new ArrayList<>());
+            for (int j = 0; j < n; j++) {
+                System.out.printf("Elemento [%d, %d]: ", i, j);
+                acimaDiagonal.getMatriz().get(i).add(sc.nextInt());
+            }
+        }
+        System.out.println();
 
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      escreva("Elemento [", i, ",", j, "]:")
-      leia(mat[i, j])
-    fimpara
-  fimpara
+        System.out.println("SOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL = " + acimaDiagonal.getSomaAcimaDiagonal());
 
-  escreval()
-  soma == 0
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      if j > i entao
-        soma == soma + mat[i, j]
-        escreva(mat[i, j]:2, " ")
-      else
-        escreva(" - ")
-      fimse
-    fimpara
-    escreval()
-  fimpara
-  escreval()
+        sc.close();
+    }
 
-  escreval("SOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL == ", soma)
+    public Integer getSomaAcimaDiagonal() {
+        Integer soma = 0;
+        for (int i = 0; i < matriz.size(); i++) {
+            for (int j = 0; j < matriz.get(i).size(); j++) {
+                if (j > i) {
+                    soma += matriz.get(i).get(j);
+                    System.out.printf("%3d", matriz.get(i).get(j));
+                } else {
+                    System.out.printf("%3s", "-");
+                }
+            }
+            System.out.println();
+        }
+        return soma;
+    }
+
+    public List<List<Integer>> getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(List<List<Integer>> matriz) {
+        this.matriz = matriz;
+    }
+}

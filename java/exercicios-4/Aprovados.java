@@ -1,29 +1,69 @@
-Algoritmo "aprovados "
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
+public class Aprovados {
 
+    private List<String> alunos = new ArrayList<>();
+    private List<Double> notas1 = new ArrayList<>();
+    private List<Double> notas2 = new ArrayList<>();
 
-n, i : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-alunos : vetor [0..10] de caractere
-notas1 : vetor [0..10] de real
-notas2 : vetor [0..10] de real
+        Aprovados aprovados = new Aprovados();
 
-Inicio
+        System.out.print("Quantos alunos serao digitados?: ");
+        Integer n = sc.nextInt();
 
-escreva("Quantos alunos serao digitados?: ")
-leia(n)
+        // Limpar buffer
+        sc.nextLine();
 
-for i de 0 ate n-1 faca
-  escreval("Digite nome, primeira e segunda nota do ", i+1, "o aluno:")
-  leia(alunos[i])
-  leia(notas1[i])
-  leia(notas2[i])
-fimpara
+        for (int i = 0; i < n; i++) {
+            System.out.printf("Digite nome, primeira e segunda nota do %dº aluno:\n", i + 1);
+            aprovados.getAlunos().add(sc.nextLine());
+            aprovados.getNotas1().add(sc.nextDouble());
+            aprovados.getNotas2().add(sc.nextDouble());
 
-escreval("Alunos aprovados:")
+            // Limpar buffer
+            sc.nextLine();
+        }
 
-for i de 0 ate n-1 faca
-  if ((notas1[i] + notas2[i]) / 2 >== 6) entao
-    escreval(alunos[i])
-  fimse
-fimpara
+        System.out.println("Alunos aprovados: " + aprovados.getAprovados().toString());
+
+        sc.close();
+    }
+
+    public List<String> getAprovados() {
+        return IntStream
+                .range(0, alunos.size())
+                .filter(i -> (notas1.get(i) + notas2.get(i)) / 2 >= 6)
+                .mapToObj(i -> alunos.get(i)).toList();
+    }
+
+    public List<String> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<String> alunos) {
+        this.alunos = alunos;
+    }
+
+    public List<Double> getNotas1() {
+        return notas1;
+    }
+
+    public void setNotas1(List<Double> notas1) {
+        this.notas1 = notas1;
+    }
+
+    public List<Double> getNotas2() {
+        return notas2;
+    }
+
+    public void setNotas2(List<Double> notas2) {
+        this.notas2 = notas2;
+    }
+}

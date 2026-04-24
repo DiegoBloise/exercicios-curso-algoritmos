@@ -18,7 +18,7 @@ public class AbaixoDaMedia {
 
         for (int i = 0; i < n - 1; i++) {
             System.out.print("Digite um numero: ");
-            am.numeros.add(sc.nextDouble());
+            am.getNumeros().add(sc.nextDouble());
         }
 
         System.out.printf("MEDIA DO VETOR = %.3f", am.getMedia());
@@ -37,5 +37,13 @@ public class AbaixoDaMedia {
 
     public List<Double> getAbaixoMedia() {
         return numeros.stream().filter((n) -> n < getMedia()).toList();
+    }
+
+    public List<Double> getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(List<Double> numeros) {
+        this.numeros = numeros;
     }
 }

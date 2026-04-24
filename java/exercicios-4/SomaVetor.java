@@ -1,34 +1,41 @@
-Algoritmo "soma_vetor"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class SomaVetor {
 
+    private List<Double> numeros = new ArrayList<>();
 
-n, i : inteiro
-numeros : vetor [0..10] de real
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-soma, media : real
+        SomaVetor somaVetor = new SomaVetor();
 
-Inicio
+        System.out.print("Quantos numeros voce vai digitar?: ");
+        Integer n = sc.nextInt();
 
-escreva("Quantos numeros voce vai digitar?: ")
-leia(n)
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            somaVetor.getNumeros().add(sc.nextDouble());
+        }
 
-for i de 0 ate n-1 faca
-  escreva("Digite um numero: ")
-  leia(numeros[i])
-fimpara
+        System.out.println("\nVALORES: " + somaVetor.getNumeros().toString());
+        System.out.printf("SOMA = %.2f\n", somaVetor.getSoma());
+        System.out.printf("MEDIA = %.2f\n", somaVetor.getSoma() / somaVetor.getNumeros().size());
 
-escreval()
-escreva("VALORES: ")
-for i de 0 ate n-1 faca
-  escreva(numeros[i]:1:1, " ")
-fimpara
+        sc.close();
+    }
 
-soma == 0
-for i de 0 ate n-1 faca
-  soma == soma + numeros[i]
-fimpara
-media == soma / n
+    public Double getSoma() {
+        return numeros.stream().reduce(0.0, Double::sum);
+    }
 
-escreval()
-escreval("SOMA == ", soma:1:2)
-escreval("MEDIA == ", media:1:2)
+    public List<Double> getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(List<Double> numeros) {
+        this.numeros = numeros;
+    }
+}

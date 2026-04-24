@@ -1,30 +1,40 @@
-Algoritmo "numeros_pares"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class NumerosPares {
 
+    private List<Integer> numeros = new ArrayList<>();
 
-n, i, count, numero  : inteiro
-numerosPares : vetor [0..10] de inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-Inicio
+        NumerosPares numerosPares = new NumerosPares();
 
-escreva("Quantos numeros voce vai digitar?: ")
-leia(n)
+        System.out.print("Quantos numeros voce vai digitar?: ");
+        Integer n = sc.nextInt();
 
-count == 0
-for i de 0 ate n-1 faca
-  escreva("Digite um numero: ")
-  leia(numero)
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            numerosPares.getNumeros().add(sc.nextInt());
+        }
 
-  if numero % 2 == 0 entao
-    numerosPares[count] == numero
-    count == count + 1
-  fimse
-fimpara
+        System.out.println("\nNUMEROS PARES: " + numerosPares.getNumerosPares().toString());
+        System.out.println("QUANTIDADE DE PARES: " + numerosPares.getNumerosPares().size());
 
-escreval("NUMEROS PARES:")
-for i de 0 ate count-1 faca
-  escreva(numerosPares[i], " ")
-fimpara
+        sc.close();
+    }
 
-escreval()
-escreval("QUANTIDADE DE PARES == ", count)
+    public List<Integer> getNumerosPares() {
+        return numeros.stream().filter((n) -> n % 2 == 0).toList();
+    }
+
+    public List<Integer> getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(List<Integer> numeros) {
+        this.numeros = numeros;
+    }
+}

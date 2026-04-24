@@ -1,31 +1,66 @@
-Algoritmo "soma_vetores"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
+public class SomaVetores {
 
+    private List<Integer> a = new ArrayList<>();
+    private List<Integer> b = new ArrayList<>();
+    private List<Integer> c = new ArrayList<>();
 
-n, i : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-a, b, c : vetor [0..10] de inteiro
+        SomaVetores somaVetores = new SomaVetores();
 
-Inicio
+        System.out.print("Quantos valores vai ter cada vetor?: ");
+        Integer n = sc.nextInt();
 
-escreva("Quantos valores vai ter cada vetor?: ")
-leia(n)
+        System.out.println("\nDigite os valores do vetor A: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            somaVetores.getA().add(sc.nextInt());
+        }
 
-escreva("Digite os valores do vetor A: ")
-for i de 0 ate n-1 faca
-  leia(a[i])
-fimpara
+        System.out.println("\nDigite os valores do vetor B: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            somaVetores.getB().add(sc.nextInt());
+        }
 
-escreva("Digite os valores do vetor B: ")
-for i de 0 ate n-1 faca
-  leia(b[i])
-fimpara
+        System.out.println("\nVETOR RESULTANTE: " + somaVetores.getVetorResultante().toString());
 
-for i de 0 ate n-1 faca
-  c[i] == a[i] + b[i]
-fimpara
+        sc.close();
+    }
 
-escreval("VETOR RESULTANTE:")
-for i de 0 ate n-1 faca
-  escreval(c[i])
-fimpara
+    public List<Integer> getVetorResultante() {
+        return IntStream.range(0, a.size())
+                .mapToObj(i -> a.get(i) + b.get(i)).toList();
+    }
+
+    public List<Integer> getA() {
+        return a;
+    }
+
+    public void setA(List<Integer> a) {
+        this.a = a;
+    }
+
+    public List<Integer> getB() {
+        return b;
+    }
+
+    public void setB(List<Integer> b) {
+        this.b = b;
+    }
+
+    public List<Integer> getC() {
+        return c;
+    }
+
+    public void setC(List<Integer> c) {
+        this.c = c;
+    }
+}

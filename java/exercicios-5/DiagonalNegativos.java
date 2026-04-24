@@ -1,38 +1,64 @@
-Algoritmo "diagonal_negativos"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class DiagonalNegativos {
 
+    private List<List<Integer>> matriz = new ArrayList<>();
 
-  n, i, j : inteiro
-  qtdNegativos : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-  mat : vetor [0..10, 0..10] de inteiro
+        DiagonalNegativos diagonalNegativos = new DiagonalNegativos();
 
-Inicio
+        System.out.print("Qual a ordem da matriz?: ");
+        Integer n = sc.nextInt();
 
-  escreva("Qual a ordem da matriz?: ")
-  leia(n)
-  
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      escreva("Elemento [", i, ",", j, "]: ")
-      leia(mat[i, j])
-    fimpara
-  fimpara
+        for (int i = 0; i < n; i++) {
+            diagonalNegativos.getMatriz().add(new ArrayList<>());
+            for (int j = 0; j < n; j++) {
+                System.out.printf("Elemento [%d, %d]: ", i, j);
+                diagonalNegativos.getMatriz().get(i).add(sc.nextInt());
+            }
+        }
 
-  qtdNegativos == 0
+        System.out.println("DIAGONAL PRINCIPAL: " + diagonalNegativos.getDiagonalPrincipal());
 
-  escreva("DIAGONAL PRINCIPAL: ")
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      if i == j entao
-        escreva(mat[i, j], " ")
-      fimse
-      
-      if mat[i, j] < 0 entao
-        qtdNegativos == qtdNegativos + 1
-      fimse
-    fimpara
-  fimpara
+        System.out.println("QUANTIDADE DE NEGATIVOS: " + diagonalNegativos.getTotalNegativos());
 
-  escreval()
-  escreval("QUANTIDADE DE NEGATIVOS: ", qtdNegativos)
+        sc.close();
+    }
+
+    public Integer getTotalNegativos() {
+        Integer totalNegativos = 0;
+        for (int i = 0; i < matriz.size(); i++) {
+            for (int j = 0; j < matriz.get(i).size(); j++) {
+                if (matriz.get(i).get(j) < 0) {
+                    totalNegativos++;
+                }
+            }
+        }
+        return totalNegativos;
+    }
+
+    public List<Integer> getDiagonalPrincipal() {
+        List<Integer> diagonalPrincipal = new ArrayList<>();
+        for (int i = 0; i < matriz.size(); i++) {
+            for (int j = 0; j < matriz.get(i).size(); j++) {
+                if (j == i) {
+                    diagonalPrincipal.add(matriz.get(i).get(j));
+                }
+            }
+        }
+        return diagonalPrincipal;
+    }
+
+    public List<List<Integer>> getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(List<List<Integer>> matriz) {
+        this.matriz = matriz;
+    }
+}

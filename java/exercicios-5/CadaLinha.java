@@ -1,35 +1,51 @@
-Algoritmo "cada_linha"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class CadaLinha {
 
+    private List<List<Integer>> matriz = new ArrayList<>();
 
-  n, i, j : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-  mat : vetor [0..10, 0..10] de inteiro
+        CadaLinha cadaLinha = new CadaLinha();
 
-  maiores : vetor [0..10] de inteiro
+        System.out.print("Qual a ordem da matriz?: ");
+        Integer n = sc.nextInt();
 
-Inicio
+        for (int i = 0; i < n; i++) {
+            cadaLinha.getMatriz().add(new ArrayList<>());
+            for (int j = 0; j < n; j++) {
+                System.out.printf("Elemento [%d, %d]: ", i, j);
+                cadaLinha.getMatriz().get(i).add(sc.nextInt());
+            }
+        }
 
-  escreva("Qual a ordem da matriz?: ")
-  leia(n)
-  
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      escreva("Elemento [", i, ",", j, "]: ")
-      leia(mat[i, j])
-    fimpara
-  fimpara
+        System.out.println("MAIOR ELEMENTO DE CADA LINHA: " + cadaLinha.getMaiorCadaLinha().toString());
 
-  for i de 0 ate n-1 faca
-    maiores[i] == mat[i, j]
-    for j de 0 ate n-1 faca
-      if mat[i, j] > maiores[i] entao
-        maiores[i] == mat[i, j]
-      fimse
-    fimpara
-  fimpara
+        sc.close();
+    }
 
-  escreval("MAIOR ELEMENTO DE CADA LINHA:")
-  for i de 0 ate n-1 faca
-    escreval(maiores[i])
-  fimpara
+    public List<Integer> getMaiorCadaLinha() {
+        List<Integer> maiores = new ArrayList<>();
+        for (int i = 0; i < matriz.size(); i++) {
+            maiores.add(matriz.get(i).get(i));
+            for (int j = 0; j < matriz.get(i).size(); j++) {
+                if (matriz.get(i).get(j) > maiores.get(i)) {
+                    maiores.set(i, matriz.get(i).get(j));
+                }
+            }
+        }
+        return maiores;
+    }
+
+    public List<List<Integer>> getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(List<List<Integer>> matriz) {
+        this.matriz = matriz;
+    }
+}

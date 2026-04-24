@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class Alturas {
 
-    List<String> nomes = new ArrayList<>();
-    List<Integer> idades = new ArrayList<>();
-    List<Double> alturas = new ArrayList<>();
+    private List<String> nomes = new ArrayList<>();
+    private List<Integer> idades = new ArrayList<>();
+    private List<Double> alturas = new ArrayList<>();
 
-    List<String> nomesMenores = new ArrayList<>();
-    Integer qtdMenores;
+    private List<String> nomesMenores = new ArrayList<>();
+    private Integer qtdMenores;
 
-    Double soma, media;
+    private Double soma;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -28,13 +28,13 @@ public class Alturas {
             System.out.printf("Dados da %da pessoa: ", i + 1);
 
             System.out.print("\nNome: ");
-            alturas.nomes.add(sc.nextLine());
+            alturas.getNomes().add(sc.nextLine());
 
             System.out.print("Idade: ");
-            alturas.idades.add(sc.nextInt());
+            alturas.getIdades().add(sc.nextInt());
 
             System.out.print("Altura: ");
-            alturas.alturas.add(sc.nextDouble());
+            alturas.getAlturas().add(sc.nextDouble());
 
             sc.nextLine();
         }

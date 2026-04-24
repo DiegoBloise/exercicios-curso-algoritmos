@@ -1,33 +1,50 @@
-Algoritmo "maior_posicao"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class MaiorPosicao {
 
+    private List<Double> numeros = new ArrayList<>();
 
-n, i : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-numeros : vetor [0..10] de real
+        MaiorPosicao maiorPosicao = new MaiorPosicao();
 
-maior : real
-maiorIndex : inteiro
+        System.out.print("Quantos numeros voce vai digitar?: ");
+        Integer n = sc.nextInt();
 
-Inicio
+        for (int i = 0; i < n; i++) {
+            System.out.print("Digite um numero: ");
+            maiorPosicao.getNumeros().add(sc.nextDouble());
+        }
 
-escreva("Quantos numeros voce vai digitar?: ")
-leia(n)
+        System.out.printf("\nMAIOR VALOR = %.1f\n", maiorPosicao.getMaior());
+        System.out.println("POSICAO DO MAIOR VALOR = " + maiorPosicao.getMaiorIndex());
 
-for i de 0 ate n-1 faca
-  escreva("Digite um numero: ")
-  leia(numeros[i])
-fimpara
+        sc.close();
+    }
 
-maior == numeros[0]
-maiorIndex == 0
-for i de 0 ate n-1 faca
-  if numeros[i] > maior entao
-    maior == numeros[i]
-    maiorIndex == i
-  fimse
-fimpara
+    public List<Double> getNumeros() {
+        return numeros;
+    }
 
-escreval()
-escreval("MAIOR VALOR == ", maior:1:1)
-escreval("POSICAO DO MAIOR VALOR == ", maiorIndex)
+    public void setNumeros(List<Double> numeros) {
+        this.numeros = numeros;
+    }
+
+    public Double getMaior() {
+        return numeros.stream().max(Double::compare).get();
+    }
+
+    public Integer getMaiorIndex() {
+        Integer maiorIndex = 0;
+        for (int i = 0; i < numeros.size(); i++) {
+            if (numeros.get(i) > numeros.get(maiorIndex)) {
+                maiorIndex = i;
+            }
+        }
+        return maiorIndex;
+    }
+}

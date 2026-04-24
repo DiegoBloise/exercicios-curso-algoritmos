@@ -1,57 +1,65 @@
-Algoritmo "dados_pessoas "
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
+public class DadosPessoas {
 
+    private List<Double> alturas = new ArrayList<>();
+    private List<String> generos = new ArrayList<>();
 
-n, i : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-alturas : vetor [0..10] de real
-generos : vetor [0..10] de caractere
+        DadosPessoas dadosPessoas = new DadosPessoas();
 
-maiorAltura, menorAltura : real
-mediaAlturaMulheres, somaAlturaMulheres : real
-numeroHomens : inteiro
+        System.out.print("Quantas pessoas serao digitadas?: ");
+        Integer n = sc.nextInt();
 
-Inicio
+        for (int i = 0; i < n; i++) {
+            System.out.printf("\nAltura da %dª pessoa: ", i + 1);
+            dadosPessoas.getAlturas().add(sc.nextDouble());
 
-escreva("Quantas pessoas serao digitadas?: ")
-leia(n)
+            // Limpar buffer
+            sc.nextLine();
 
-for i de 0 ate n-1 faca
-  escreva("Altura da ", i+1, "a pessoa:")
-  leia(alturas[i])
-  escreva("Genero da ", i+1, "a pessoa:")
-  leia(generos[i])
-fimpara
+            System.out.printf("Genero da %dª pessoa: ", i + 1);
+            dadosPessoas.getGeneros().add(sc.nextLine());
+        }
 
-somaAlturaMulheres == 0
-menorAltura == alturas[0]
-maiorAltura == alturas[0]
-numeroHomens == 0
+        System.out.println("\nMenor altura = " + dadosPessoas.getMenorAltura());
+        System.out.println("Maior altura = " + dadosPessoas.getMaiorAltura());
+        System.out.printf("Media das alturas das mulheres = %.2f\n", dadosPessoas.getMediaAlturaMulheres());
+        System.out.println("Numero de homens = " + dadosPessoas.getTotalHomens());
 
-for i de 0 ate n-1 faca
-  if alturas[i] > maiorAltura entao
-    maiorAltura == alturas[i]
-  fimse
+        sc.close();
+    }
 
-  if alturas[i] < menorAltura entao
-    menorAltura == alturas[i]
-  fimse
-  
-  if alturas[i] < menorAltura entao
-    menorAltura == alturas[i]
-  fimse
-  
-  if generos[i] == "M" entao
-    numeroHomens == numeroHomens + 1
-  else
-    somaAlturaMulheres == somaAlturaMulheres + alturas[i]
-  fimse
-  
-fimpara
+    public Double getMenorAltura() {
+        return alturas.stream().min(Double::compare).get();
+    }
 
-mediaAlturaMulheres == somaAlturaMulheres / (n - numeroHomens)
+    public Double getMaiorAltura() {
+        return alturas.stream().max(Double::compare).get();
+    }
 
-escreval("Menor altura == ", menorAltura)
-escreval("Maior altura == ", maiorAltura)
-escreval("Media das alturas das mulheres == ", mediaAlturaMulheres:1:2)
-escreval("Numero de homens == ", numeroHomens)
+    public Double getMediaAlturaMulheres() {
+        return IntStream
+                .range(0, alturas.size())
+                .filter(i -> generos.get(i).equals("F"))
+                .mapToObj(i -> alturas.get(i)).reduce(0.0, Double::sum) / (getAlturas().size() - getTotalHomens());
+    }
+
+    public Integer getTotalHomens() {
+        return generos.stream().filter((g) -> g.equals("M")).toList().size();
+    }
+
+    public List<Double> getAlturas() {
+        return alturas;
+    }
+
+    public List<String> getGeneros() {
+        return generos;
+    }
+}

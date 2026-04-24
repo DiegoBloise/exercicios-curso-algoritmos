@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Dardo {
 
-    Double d1, d2, d3;
-    Double maior;
+    private Double d1, d2, d3;
+    private Double maior;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
