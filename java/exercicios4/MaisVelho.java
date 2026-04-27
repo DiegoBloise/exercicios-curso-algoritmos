@@ -20,7 +20,8 @@ public class MaisVelho {
         sc.nextLine();
 
         for (int i = 0; i < n; i++) {
-            System.out.printf("\nDados da %dª pessoa:\n", i + 1);
+            System.out.printf("Dados da %da pessoa:\n", i + 1);
+
             System.out.print("Nome: ");
             maisVelho.getNomes().add(sc.nextLine());
 
@@ -31,7 +32,7 @@ public class MaisVelho {
             sc.nextLine();
         }
 
-        System.out.println("\nPESSOA MAIS VELHA: " + maisVelho.getNomeMaisVelho());
+        System.out.println("PESSOA MAIS VELHA: " + maisVelho.getNomeMaisVelho());
 
         sc.close();
     }

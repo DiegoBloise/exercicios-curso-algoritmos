@@ -20,14 +20,22 @@ public class NumerosPares {
             numerosPares.getNumeros().add(sc.nextInt());
         }
 
-        System.out.println("\nNUMEROS PARES: " + numerosPares.getNumerosPares().toString());
-        System.out.println("QUANTIDADE DE PARES: " + numerosPares.getNumerosPares().size());
+        System.out.println("\nNUMEROS PARES:");
+        for (Integer num : numerosPares.getNumerosPares()) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        System.out.println("QUANTIDADE DE PARES = " + numerosPares.getQtdPares());
 
         sc.close();
     }
 
     public List<Integer> getNumerosPares() {
         return numeros.stream().filter((n) -> n % 2 == 0).toList();
+    }
+
+    public Integer getQtdPares() {
+        return numeros.stream().filter((n) -> n % 2 == 0).toList().size();
     }
 
     public List<Integer> getNumeros() {

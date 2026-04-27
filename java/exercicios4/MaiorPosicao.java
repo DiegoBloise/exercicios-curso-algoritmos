@@ -12,7 +12,7 @@ public class MaiorPosicao {
 
         MaiorPosicao maiorPosicao = new MaiorPosicao();
 
-        System.out.print("Quantos numeros voce vai digitar?: ");
+        System.out.print("Quanto numeros voce vai digitar?: ");
         Integer n = sc.nextInt();
 
         for (int i = 0; i < n; i++) {

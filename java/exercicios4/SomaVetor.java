@@ -20,15 +20,23 @@ public class SomaVetor {
             somaVetor.getNumeros().add(sc.nextDouble());
         }
 
-        System.out.println("\nVALORES: " + somaVetor.getNumeros().toString());
+        System.out.print("VALORES = ");
+        for (int i = 0; i < somaVetor.getNumeros().size(); i++) {
+            System.out.printf("%.1f ", somaVetor.getNumeros().get(i));
+        }
+        System.out.println();
         System.out.printf("SOMA = %.2f\n", somaVetor.getSoma());
-        System.out.printf("MEDIA = %.2f\n", somaVetor.getSoma() / somaVetor.getNumeros().size());
+        System.out.printf("MEDIA = %.2f\n", somaVetor.getMedia());
 
         sc.close();
     }
 
     public Double getSoma() {
         return numeros.stream().reduce(0.0, Double::sum);
+    }
+
+    public Double getMedia() {
+        return getSoma() / numeros.size();
     }
 
     public List<Double> getNumeros() {

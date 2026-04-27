@@ -9,11 +9,6 @@ public class Alturas {
     private List<Integer> idades = new ArrayList<>();
     private List<Double> alturas = new ArrayList<>();
 
-    private List<String> nomesMenores = new ArrayList<>();
-    private Integer qtdMenores;
-
-    private Double soma;
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
@@ -25,9 +20,9 @@ public class Alturas {
         sc.nextLine();
 
         for (int i = 0; i < n; i++) {
-            System.out.printf("Dados da %da pessoa: ", i + 1);
+            System.out.printf("Dados da %da pessoa:\n", i + 1);
 
-            System.out.print("\nNome: ");
+            System.out.print("Nome: ");
             alturas.getNomes().add(sc.nextLine());
 
             System.out.print("Idade: ");
@@ -39,16 +34,46 @@ public class Alturas {
             sc.nextLine();
         }
 
-        System.out.printf("\nAltura media: %.2f", alturas.getMedia());
-
-        System.err.printf("\nPessoas com menos de 16 anos: %.1f%%", alturas.getPorcentagemMenores());
-        System.out.println("\nNomes: " + alturas.getNomesMenores().toString());
+        System.out.printf("Altura media: %.2f\n", alturas.getMedia());
+        System.out.printf("Pessoas com menos de 16 anos: %.1f%%\n", alturas.getPorcentagemMenores());
+        System.out.println("Nomes:");
+        for (String nome : alturas.getNomesMenores()) {
+            System.out.println(nome);
+        }
 
         sc.close();
     }
 
     public Double getPorcentagemMenores() {
         return Double.valueOf(getQtdMenores()) / alturas.size() * 100;
+    }
+
+    public List<String> getNomesMenores() {
+        List<String> nomesMenores = new ArrayList<>();
+        for (int i = 0; i < nomes.size(); i++) {
+            if (idades.get(i) < 16) {
+                nomesMenores.add(nomes.get(i));
+            }
+        }
+        return nomesMenores;
+    }
+
+    public Integer getQtdMenores() {
+        Integer qtdMenores = 0;
+        for (int i = 0; i < idades.size(); i++) {
+            if (idades.get(i) < 16) {
+                qtdMenores++;
+            }
+        }
+        return qtdMenores;
+    }
+
+    public Double getMedia() {
+        Double soma = 0.0;
+        for (int i = 0; i < alturas.size(); i++) {
+            soma += alturas.get(i);
+        }
+        return soma / alturas.size();
     }
 
     public List<String> getNomes() {
@@ -73,32 +98,5 @@ public class Alturas {
 
     public void setAlturas(List<Double> alturas) {
         this.alturas = alturas;
-    }
-
-    public List<String> getNomesMenores() {
-        for (int i = 0; i < nomes.size() - 1; i++) {
-            if (idades.get(i) < 16) {
-                nomesMenores.add(nomes.get(i));
-            }
-        }
-        return nomesMenores;
-    }
-
-    public Integer getQtdMenores() {
-        qtdMenores = 0;
-        for (int i = 0; i < idades.size() - 1; i++) {
-            if (idades.get(i) < 16) {
-                qtdMenores++;
-            }
-        }
-        return qtdMenores;
-    }
-
-    public Double getMedia() {
-        soma = 0.0;
-        for (int i = 0; i < alturas.size(); i++) {
-            soma += alturas.get(i);
-        }
-        return soma / alturas.size();
     }
 }

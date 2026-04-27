@@ -22,7 +22,7 @@ public class Aprovados {
         sc.nextLine();
 
         for (int i = 0; i < n; i++) {
-            System.out.printf("Digite nome, primeira e segunda nota do %dº aluno:\n", i + 1);
+            System.out.printf("Digite nome, primeira e segunda nota do %do aluno:\n", i + 1);
             aprovados.getAlunos().add(sc.nextLine());
             aprovados.getNotas1().add(sc.nextDouble());
             aprovados.getNotas2().add(sc.nextDouble());
@@ -31,7 +31,10 @@ public class Aprovados {
             sc.nextLine();
         }
 
-        System.out.println("Alunos aprovados: " + aprovados.getAprovados().toString());
+        System.out.println("Alunos aprovados:");
+        for (String aluno : aprovados.getAprovados()) {
+            System.out.println(aluno);
+        }
 
         sc.close();
     }

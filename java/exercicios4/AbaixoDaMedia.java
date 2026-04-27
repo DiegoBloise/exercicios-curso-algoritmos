@@ -11,18 +11,20 @@ public class AbaixoDaMedia {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
         AbaixoDaMedia am = new AbaixoDaMedia();
-        Integer n;
 
-        System.out.print("Quantos valores vai ter cada vetor?: ");
-        n = sc.nextInt();
+        System.out.print("Quantos elementos vai ter o vetor?: ");
+        Integer n = sc.nextInt();
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n; i++) {
             System.out.print("Digite um numero: ");
             am.getNumeros().add(sc.nextDouble());
         }
 
-        System.out.printf("MEDIA DO VETOR = %.3f", am.getMedia());
-        System.out.println("\nELEMENTOS ABAIXO DA MEDIA: " + am.getAbaixoMedia());
+        System.out.printf("MEDIA DO VETOR = %.3f\n", am.getMedia());
+        System.out.println("ELEMENTOS ABAIXO DA MEDIA:");
+        for (Double num : am.getAbaixoMedia()) {
+            System.out.printf("%.1f\n", num);
+        }
 
         sc.close();
     }

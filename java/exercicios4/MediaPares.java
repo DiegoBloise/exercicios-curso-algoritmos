@@ -20,15 +20,19 @@ public class MediaPares {
             mediaPares.getNumeros().add(sc.nextInt());
         }
 
-        Integer somaPares = mediaPares.getSomaPares();
-        Double media = (double) somaPares / mediaPares.getTotalPares();
-
-        if (mediaPares.getSomaPares() > 0) {
-            System.out.printf("MEDIA DOS PARES = %.1f", media);
+        if (mediaPares.getTotalPares() > 0) {
+            System.out.printf("MEDIA DOS PARES = %.1f\n", mediaPares.getMediaPares());
         } else {
             System.out.println("NENHUM NUMERO PAR");
         }
         sc.close();
+    }
+
+    public Double getMediaPares() {
+        if (getTotalPares() == 0) {
+            return 0.0;
+        }
+        return (double) getSomaPares() / getTotalPares();
     }
 
     public Integer getSomaPares() {

@@ -18,18 +18,18 @@ public class DadosPessoas {
         Integer n = sc.nextInt();
 
         for (int i = 0; i < n; i++) {
-            System.out.printf("\nAltura da %dª pessoa: ", i + 1);
+            System.out.printf("Altura da %da pessoa: ", i + 1);
             dadosPessoas.getAlturas().add(sc.nextDouble());
 
             // Limpar buffer
             sc.nextLine();
 
-            System.out.printf("Genero da %dª pessoa: ", i + 1);
+            System.out.printf("Genero da %da pessoa: ", i + 1);
             dadosPessoas.getGeneros().add(sc.nextLine());
         }
 
-        System.out.println("\nMenor altura = " + dadosPessoas.getMenorAltura());
-        System.out.println("Maior altura = " + dadosPessoas.getMaiorAltura());
+        System.out.printf("Menor altura = %.2f\n", dadosPessoas.getMenorAltura());
+        System.out.printf("Maior altura = %.2f\n", dadosPessoas.getMaiorAltura());
         System.out.printf("Media das alturas das mulheres = %.2f\n", dadosPessoas.getMediaAlturaMulheres());
         System.out.println("Numero de homens = " + dadosPessoas.getTotalHomens());
 
@@ -45,10 +45,16 @@ public class DadosPessoas {
     }
 
     public Double getMediaAlturaMulheres() {
-        return IntStream
+        double soma = IntStream
                 .range(0, alturas.size())
                 .filter(i -> generos.get(i).equals("F"))
-                .mapToObj(i -> alturas.get(i)).reduce(0.0, Double::sum) / (getAlturas().size() - getTotalHomens());
+                .mapToObj(i -> alturas.get(i))
+                .reduce(0.0, Double::sum);
+        long qtdMulheres = generos.stream().filter(g -> g.equals("F")).count();
+        if (qtdMulheres == 0) {
+            return 0.0;
+        }
+        return soma / qtdMulheres;
     }
 
     public Integer getTotalHomens() {
@@ -59,7 +65,15 @@ public class DadosPessoas {
         return alturas;
     }
 
+    public void setAlturas(List<Double> alturas) {
+        this.alturas = alturas;
+    }
+
     public List<String> getGeneros() {
         return generos;
+    }
+
+    public void setGeneros(List<String> generos) {
+        this.generos = generos;
     }
 }

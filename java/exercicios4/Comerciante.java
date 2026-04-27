@@ -7,20 +7,9 @@ import java.util.Scanner;
 
 public class Comerciante {
 
-    private List<String> produtos;
-    private List<BigDecimal> precosCompra;
-    private List<BigDecimal> precosVenda;
-
-    private Integer lucroBaixo;
-    private Integer lucroMedio;
-    private Integer lucroAlto;
-
-    private BigDecimal totalCompra;
-    private BigDecimal totalVenda;
-    private BigDecimal totalLucro;
-
-    private BigDecimal lucro;
-    private Double percentLucro;
+    private List<String> produtos = new ArrayList<>();
+    private List<BigDecimal> precosCompra = new ArrayList<>();
+    private List<BigDecimal> precosVenda = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -48,60 +37,77 @@ public class Comerciante {
             sc.nextLine();
         }
 
-        comerciante.gerarRelatorio();
+        System.out.println("\nRELATORIO:");
+        System.out.println("Lucro abaixo de 10%: " + comerciante.getLucroBaixo());
+        System.out.println("Lucro entre 10% e 20%: " + comerciante.getLucroMedio());
+        System.out.println("Lucro acima de 20%: " + comerciante.getLucroAlto());
+        System.out.printf("Valor total de compra: %.2f\n", comerciante.getTotalCompra());
+        System.out.printf("Valor total de venda: %.2f\n", comerciante.getTotalVenda());
+        System.out.printf("Lucro total: %.2f\n", comerciante.getTotalLucro());
 
         sc.close();
     }
 
-    public Comerciante() {
-        produtos = new ArrayList<>();
-        precosCompra = new ArrayList<>();
-        precosVenda = new ArrayList<>();
-        lucroBaixo = 0;
-        lucroMedio = 0;
-        lucroAlto = 0;
-        totalCompra = BigDecimal.ZERO;
-        totalVenda = BigDecimal.ZERO;
-        totalLucro = BigDecimal.ZERO;
-    }
-
-    public void gerarRelatorio() {
-        calcular();
-
-        StringBuffer buffer = new StringBuffer()
-                .append(System.lineSeparator())
-                .append("RELATORIO:").append(System.lineSeparator())
-                .append(String.format("Lucro abaixo de 10%%: %d", lucroBaixo)).append(System.lineSeparator())
-                .append(String.format("Lucro entre 10%% e 20%%: %d", lucroMedio)).append(System.lineSeparator())
-                .append(String.format("Lucro acima de 20%%: %d", lucroAlto)).append(System.lineSeparator())
-                .append(String.format("Valor total de compra: R$ %.2f", totalCompra)).append(System.lineSeparator())
-                .append(String.format("Valor total de venda: R$ %.2f", totalVenda)).append(System.lineSeparator())
-                .append(String.format("Lucro total: R$ %.2f", totalLucro));
-
-        System.out.println(buffer);
-    }
-
-    private void calcular() {
+    public Integer getLucroBaixo() {
+        Integer lucroBaixo = 0;
         for (int i = 0; i < produtos.size(); i++) {
-            lucro = precosVenda.get(i).subtract(precosCompra.get(i));
-            percentLucro = lucro.divide(precosCompra.get(i), 2, RoundingMode.HALF_UP)
+            BigDecimal lucro = precosVenda.get(i).subtract(precosCompra.get(i));
+            Double percentLucro = lucro.divide(precosCompra.get(i), 2, RoundingMode.HALF_UP)
                     .multiply(BigDecimal.valueOf(100))
                     .doubleValue();
-
-            System.out.println(percentLucro);
-
             if (percentLucro < 10) {
                 lucroBaixo++;
-            } else if (percentLucro <= 20) {
+            }
+        }
+        return lucroBaixo;
+    }
+
+    public Integer getLucroMedio() {
+        Integer lucroMedio = 0;
+        for (int i = 0; i < produtos.size(); i++) {
+            BigDecimal lucro = precosVenda.get(i).subtract(precosCompra.get(i));
+            Double percentLucro = lucro.divide(precosCompra.get(i), 2, RoundingMode.HALF_UP)
+                    .multiply(BigDecimal.valueOf(100))
+                    .doubleValue();
+            if (percentLucro >= 10 && percentLucro <= 20) {
                 lucroMedio++;
-            } else {
+            }
+        }
+        return lucroMedio;
+    }
+
+    public Integer getLucroAlto() {
+        Integer lucroAlto = 0;
+        for (int i = 0; i < produtos.size(); i++) {
+            BigDecimal lucro = precosVenda.get(i).subtract(precosCompra.get(i));
+            Double percentLucro = lucro.divide(precosCompra.get(i), 2, RoundingMode.HALF_UP)
+                    .multiply(BigDecimal.valueOf(100))
+                    .doubleValue();
+            if (percentLucro > 20) {
                 lucroAlto++;
             }
-
-            totalCompra = totalCompra.add(precosCompra.get(i));
-            totalVenda = totalVenda.add(precosVenda.get(i));
-            totalLucro = totalLucro.add(lucro);
         }
+        return lucroAlto;
+    }
+
+    public BigDecimal getTotalCompra() {
+        BigDecimal totalCompra = BigDecimal.ZERO;
+        for (int i = 0; i < precosCompra.size(); i++) {
+            totalCompra = totalCompra.add(precosCompra.get(i));
+        }
+        return totalCompra;
+    }
+
+    public BigDecimal getTotalVenda() {
+        BigDecimal totalVenda = BigDecimal.ZERO;
+        for (int i = 0; i < precosVenda.size(); i++) {
+            totalVenda = totalVenda.add(precosVenda.get(i));
+        }
+        return totalVenda;
+    }
+
+    public BigDecimal getTotalLucro() {
+        return getTotalVenda().subtract(getTotalCompra());
     }
 
     public List<String> getProdutos() {
@@ -126,69 +132,5 @@ public class Comerciante {
 
     public void setPrecosVenda(List<BigDecimal> precosVenda) {
         this.precosVenda = precosVenda;
-    }
-
-    public Integer getLucroBaixo() {
-        return lucroBaixo;
-    }
-
-    public void setLucroBaixo(Integer lucroBaixo) {
-        this.lucroBaixo = lucroBaixo;
-    }
-
-    public Integer getLucroMedio() {
-        return lucroMedio;
-    }
-
-    public void setLucroMedio(Integer lucroMedio) {
-        this.lucroMedio = lucroMedio;
-    }
-
-    public Integer getLucroAlto() {
-        return lucroAlto;
-    }
-
-    public void setLucroAlto(Integer lucroAlto) {
-        this.lucroAlto = lucroAlto;
-    }
-
-    public BigDecimal getTotalCompra() {
-        return totalCompra;
-    }
-
-    public void setTotalCompra(BigDecimal totalCompra) {
-        this.totalCompra = totalCompra;
-    }
-
-    public BigDecimal getTotalVenda() {
-        return totalVenda;
-    }
-
-    public void setTotalVenda(BigDecimal totalVenda) {
-        this.totalVenda = totalVenda;
-    }
-
-    public BigDecimal getTotalLucro() {
-        return totalLucro;
-    }
-
-    public void setTotalLucro(BigDecimal totalLucro) {
-        this.totalLucro = totalLucro;
-    }
-
-    public BigDecimal getLucro() {
-        return lucro;
-    }
-
-    public void setLucro(BigDecimal lucro) {
-        this.lucro = lucro;
-    }
-
-    public Double getPercentLucro() {
-        return percentLucro;
-    }
-
-    public void setPercentLucro(Double percentLucro) {
-        this.percentLucro = percentLucro;
     }
 }

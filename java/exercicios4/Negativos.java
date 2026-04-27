@@ -20,7 +20,10 @@ public class Negativos {
             negativos.getNumeros().add(sc.nextInt());
         }
 
-        System.out.println("NUMEROS NEGATIVOS: " + negativos.getNumerosNegativos().toString());
+        System.out.println("NUMEROS NEGATIVOS:");
+        for (Integer num : negativos.getNumerosNegativos()) {
+            System.out.println(num);
+        }
 
         sc.close();
     }
