@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -968,6 +969,275 @@ public class Main {
         e1.setN(10);
         e1.processarCobaias(quantities, types);
         e1.imprimirRelatorio();
+        System.out.println();
+
+        System.out.println("=".repeat(50));
+        System.out.println("Curso Completo de Algoritmos e Logica de Programacao");
+        System.out.println("educandoweb.com.br");
+        System.out.println("Prof. Dr. Nelio Alves");
+        System.out.println("Capitulo: Vetores");
+        System.out.println("Exercicios - PARTE 4");
+        System.out.println("=".repeat(50));
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema NEGATIVOS");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        Negativos neg1 = new Negativos();
+        Integer[] numsNeg1 = { 8, -2, 9, 10, -3, -7 };
+        neg1.setNumeros(List.of(numsNeg1));
+        System.out.println("Quantos numeros voce vai digitar? 6");
+        for (Integer num : numsNeg1) {
+            System.out.printf("Digite um numero: %d\n", num);
+        }
+        System.out.println("NUMEROS NEGATIVOS:");
+        for (Integer num : neg1.getNumerosNegativos()) {
+            System.out.println(num);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema SOMA_VETOR");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        SomaVetor sv1 = new SomaVetor();
+        Double[] numsSv1 = { 8.0, 4.0, 10.0, 14.0 };
+        sv1.setNumeros(List.of(numsSv1));
+        System.out.println("Quantos numeros voce vai digitar? 4");
+        for (Double num : numsSv1) {
+            System.out.printf("Digite um numero: %.1f\n", num);
+        }
+        System.out.print("VALORES = ");
+        for (Double num : sv1.getNumeros()) {
+            System.out.printf("%.1f ", num);
+        }
+        System.out.println();
+        System.out.printf("SOMA = %.2f\n", sv1.getSoma());
+        System.out.printf("MEDIA = %.2f\n", sv1.getMedia());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema ALTURAS");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        Alturas alt1 = new Alturas();
+        String[] nomesAlt = { "Joao", "Maria", "Teresa", "Carlos", "Paulo" };
+        Integer[] idadesAlt = { 15, 16, 14, 21, 17 };
+        Double[] alturasAlt = { 1.82, 1.60, 1.58, 1.65, 1.78 };
+        alt1.setNomes(List.of(nomesAlt));
+        alt1.setIdades(List.of(idadesAlt));
+        alt1.setAlturas(List.of(alturasAlt));
+        System.out.println("Quantas pessoas serao digitadas? 5");
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("Dados da %da pessoa:\n", i + 1);
+            System.out.printf("Nome: %s\n", nomesAlt[i]);
+            System.out.printf("Idade: %d\n", idadesAlt[i]);
+            System.out.printf("Altura: %.2f\n", alturasAlt[i]);
+        }
+        System.out.printf("Altura media: %.2f\n", alt1.getMedia());
+        System.out.printf("Pessoas com menos de 16 anos: %.1f%%\n", alt1.getPorcentagemMenores());
+        System.out.println("Nomes:");
+        for (String nome : alt1.getNomesMenores()) {
+            System.out.println(nome);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema NUMEROS_PARES");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        NumerosPares np1 = new NumerosPares();
+        Integer[] numsNp1 = { 8, 2, 11, 14, 13, 20 };
+        np1.setNumeros(List.of(numsNp1));
+        System.out.println("Quantos numeros voce vai digitar? 6");
+        for (Integer num : numsNp1) {
+            System.out.printf("Digite um numero: %d\n", num);
+        }
+        System.out.println("NUMEROS PARES:");
+        for (Integer num : np1.getNumerosPares()) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        System.out.println("QUANTIDADE DE PARES = " + np1.getQtdPares());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema MAIOR_POSICAO");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        MaiorPosicao mpVetor1 = new MaiorPosicao();
+        Double[] numsMp1 = { 8.0, 4.0, 10.0, 14.0, 13.0, 7.0 };
+        mpVetor1.setNumeros(List.of(numsMp1));
+        System.out.println("Quanto numeros voce vai digitar? 6");
+        for (Double num : numsMp1) {
+            System.out.printf("Digite um numero: %.1f\n", num);
+        }
+        System.out.printf("MAIOR VALOR = %.1f\n", mpVetor1.getMaior());
+        System.out.println("POSICAO DO MAIOR VALOR = " + mpVetor1.getMaiorIndex());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema SOMA_VETORES");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        SomaVetores svs1 = new SomaVetores();
+        Integer[] vetorA = { 8, 2, 11, 14, 13, 20 };
+        Integer[] vetorB = { 5, 10, 3, 1, 10, 7 };
+        svs1.setA(List.of(vetorA));
+        svs1.setB(List.of(vetorB));
+        System.out.println("Quantos valores vai ter cada vetor? 6");
+        System.out.println("Digite os valores do vetor A:");
+        for (Integer num : vetorA) {
+            System.out.println(num);
+        }
+        System.out.println("Digite os valores do vetor B:");
+        for (Integer num : vetorB) {
+            System.out.println(num);
+        }
+        System.out.println("VETOR RESULTANTE:");
+        for (Integer num : svs1.getVetorResultante()) {
+            System.out.println(num);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema ABAIXO_DA_MEDIA");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        AbaixoDaMedia am1 = new AbaixoDaMedia();
+        Double[] numsAm1 = { 10.0, 15.5, 13.2, 9.8 };
+        am1.setNumeros(List.of(numsAm1));
+        System.out.println("Quantos elementos vai ter o vetor? 4");
+        for (Double num : numsAm1) {
+            System.out.printf("Digite um numero: %.1f\n", num);
+        }
+        System.out.printf("MEDIA DO VETOR = %.3f\n", am1.getMedia());
+        System.out.println("ELEMENTOS ABAIXO DA MEDIA:");
+        for (Double num : am1.getAbaixoMedia()) {
+            System.out.printf("%.1f\n", num);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema MEDIA_PARES");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        MediaPares mpar1 = new MediaPares();
+        Integer[] numsMpar1 = { 8, 2, 11, 14, 13, 20 };
+        mpar1.setNumeros(List.of(numsMpar1));
+        System.out.println("Quantos elementos vai ter o vetor? 6");
+        for (Integer num : numsMpar1) {
+            System.out.printf("Digite um numero: %d\n", num);
+        }
+        if (mpar1.getTotalPares() > 0) {
+            System.out.printf("MEDIA DOS PARES = %.1f\n", mpar1.getMediaPares());
+        } else {
+            System.out.println("NENHUM NUMERO PAR");
+        }
+        System.out.println();
+        System.out.println("Exemplo 2:");
+        MediaPares mpar2 = new MediaPares();
+        Integer[] numsMpar2 = { 7, 9, 11 };
+        mpar2.setNumeros(List.of(numsMpar2));
+        System.out.println("Quantos elementos vai ter o vetor? 3");
+        for (Integer num : numsMpar2) {
+            System.out.printf("Digite um numero: %d\n", num);
+        }
+        if (mpar2.getTotalPares() > 0) {
+            System.out.printf("MEDIA DOS PARES = %.1f\n", mpar2.getMediaPares());
+        } else {
+            System.out.println("NENHUM NUMERO PAR");
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema MAIS_VELHO");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        MaisVelho mv1 = new MaisVelho();
+        String[] nomesMv = { "Joao", "Maria", "Teresa", "Carlos", "Paulo" };
+        Integer[] idadesMv = { 16, 21, 15, 23, 17 };
+        mv1.setNomes(List.of(nomesMv));
+        mv1.setIdades(List.of(idadesMv));
+        System.out.println("Quantas pessoas voce vai digitar? 5");
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("Dados da %da pessoa:\n", i + 1);
+            System.out.printf("Nome: %s\n", nomesMv[i]);
+            System.out.printf("Idade: %d\n", idadesMv[i]);
+        }
+        System.out.println("PESSOA MAIS VELHA: " + mv1.getNomeMaisVelho());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema APROVADOS");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        Aprovados ap1 = new Aprovados();
+        String[] alunosAp = { "Joao Silva", "Maria Teixeira", "Carlos Carvalho", "Teresa Pires" };
+        Double[] notas1Ap = { 7.0, 9.2, 5.0, 5.5 };
+        Double[] notas2Ap = { 8.5, 6.5, 6.0, 6.5 };
+        ap1.setAlunos(List.of(alunosAp));
+        ap1.setNotas1(List.of(notas1Ap));
+        ap1.setNotas2(List.of(notas2Ap));
+        System.out.println("Quantos alunos serao digitados? 4");
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("Digite nome, primeira e segunda nota do %do aluno:\n", i + 1);
+            System.out.println(alunosAp[i]);
+            System.out.println(notas1Ap[i]);
+            System.out.println(notas2Ap[i]);
+        }
+        System.out.println("Alunos aprovados:");
+        for (String aluno : ap1.getAprovados()) {
+            System.out.println(aluno);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema DADOS_PESSOAS");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        DadosPessoas dp1 = new DadosPessoas();
+        Double[] alturasDp = { 1.70, 1.83, 1.54, 1.61, 1.75 };
+        String[] generosDp = { "F", "M", "M", "F", "F" };
+        dp1.setAlturas(List.of(alturasDp));
+        dp1.setGeneros(List.of(generosDp));
+        System.out.println("Quantas pessoas serao digitadas? 5");
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("Altura da %da pessoa: %.2f\n", i + 1, alturasDp[i]);
+            System.out.printf("Genero da %da pessoa: %s\n", i + 1, generosDp[i]);
+        }
+        System.out.printf("Menor altura = %.2f\n", dp1.getMenorAltura());
+        System.out.printf("Maior altura = %.2f\n", dp1.getMaiorAltura());
+        System.out.printf("Media das alturas das mulheres = %.2f\n", dp1.getMediaAlturaMulheres());
+        System.out.println("Numero de homens = " + dp1.getTotalHomens());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema COMERCIANTE");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        Comerciante com1 = new Comerciante();
+        String[] produtosCom = { "Feijao", "Arroz", "Oleo", "Sal" };
+        BigDecimal[] compraCom = { new BigDecimal("10.00"), new BigDecimal("12.00"), new BigDecimal("5.00"), new BigDecimal("3.00") };
+        BigDecimal[] vendaCom = { new BigDecimal("11.00"), new BigDecimal("12.80"), new BigDecimal("5.70"), new BigDecimal("4.00") };
+        com1.setProdutos(List.of(produtosCom));
+        com1.setPrecosCompra(List.of(compraCom));
+        com1.setPrecosVenda(List.of(vendaCom));
+        System.out.println("Serao digitados dados de quantos produtos? 4");
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("Produto %d:\n", i + 1);
+            System.out.println("Nome: " + produtosCom[i]);
+            System.out.printf("Preco de compra: %.2f\n", compraCom[i]);
+            System.out.printf("Preco de venda: %.2f\n", vendaCom[i]);
+        }
+        System.out.println("\nRELATORIO:");
+        System.out.println("Lucro abaixo de 10%: " + com1.getLucroBaixo());
+        System.out.println("Lucro entre 10% e 20%: " + com1.getLucroMedio());
+        System.out.println("Lucro acima de 20%: " + com1.getLucroAlto());
+        System.out.printf("Valor total de compra: %.2f\n", com1.getTotalCompra());
+        System.out.printf("Valor total de venda: %.2f\n", com1.getTotalVenda());
+        System.out.printf("Lucro total: %.2f\n", com1.getTotalLucro());
         System.out.println();
 
         System.out.println("=".repeat(50));
