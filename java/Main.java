@@ -1241,6 +1241,213 @@ public class Main {
         System.out.println();
 
         System.out.println("=".repeat(50));
+        System.out.println("Curso Completo de Algoritmos e Logica de Programacao");
+        System.out.println("educandoweb.com.br");
+        System.out.println("Prof. Dr. Nelio Alves");
+        System.out.println("Capitulo: Matrizes");
+        System.out.println("Exercicios - PARTE 5");
+        System.out.println("=".repeat(50));
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema DIAGONAL_NEGATIVOS");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        DiagonalNegativos dn1 = new DiagonalNegativos();
+        dn1.setMatriz(List.of(
+            List.of(5, -3, 10),
+            List.of(15, 8, 2),
+            List.of(7, 9, -4)
+        ));
+        System.out.println("Qual a ordem da matriz? 3");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.printf("Elemento [%d,%d]: %d%n", i, j, dn1.getMatriz().get(i).get(j));
+            }
+        }
+        System.out.print("DIAGONAL PRINCIPAL: ");
+        for (Integer val : dn1.getDiagonalPrincipal()) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.println("QUANTIDADE DE NEGATIVOS = " + dn1.getTotalNegativos());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema SOMA_LINHAS");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        SomaLinhas sl1 = new SomaLinhas();
+        sl1.setMatriz(List.of(
+            List.of(7.0, 8.0, 10.0),
+            List.of(2.0, 3.0, 5.0)
+        ));
+        System.out.println("Qual a quantidade de linhas da matriz? 2");
+        System.out.println("Qual a quantidade de colunas da matriz? 3");
+        System.out.println("Digite os elementos da 1a. linha:");
+        System.out.println("7.0");
+        System.out.println("8.0");
+        System.out.println("10.0");
+        System.out.println("Digite os elementos da 2a. linha:");
+        System.out.println("2.0");
+        System.out.println("3.0");
+        System.out.println("5.0");
+        System.out.println("VETOR GERADO:");
+        for (Double val : sl1.getVetorGerado()) {
+            System.out.printf("%.1f%n", val);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema NEGATIVOS_MATRIZ");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        NegativosMatriz nm1 = new NegativosMatriz();
+        nm1.setMatriz(List.of(
+            List.of(12, -8, 5),
+            List.of(-13, 10, -6)
+        ));
+        System.out.println("Qual a quantidade de linhas da matriz? 2");
+        System.out.println("Qual a quantidade de colunas da matriz? 3");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.printf("Elemento [%d,%d]: %d%n", i, j, nm1.getMatriz().get(i).get(j));
+            }
+        }
+        System.out.println("VALORES NEGATIVOS:");
+        for (Integer val : nm1.getValoresNegativos()) {
+            System.out.println(val);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema CADA_LINHA");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        CadaLinha cl1 = new CadaLinha();
+        cl1.setMatriz(List.of(
+            List.of(5, -3, 10, 8),
+            List.of(15, 8, 2, 10),
+            List.of(7, 9, -4, 3),
+            List.of(8, -7, 4, 13)
+        ));
+        System.out.println("Qual a ordem da matriz? 4");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.printf("Elemento [%d,%d]: %d%n", i, j, cl1.getMatriz().get(i).get(j));
+            }
+        }
+        System.out.println("MAIOR ELEMENTO DE CADA LINHA:");
+        for (Integer val : cl1.getMaiorCadaLinha()) {
+            System.out.println(val);
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema SOMA_MATRIZES");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        SomaMatrizes sm1 = new SomaMatrizes();
+        sm1.setA(List.of(
+            List.of(3, 5, 2),
+            List.of(4, 5, 1)
+        ));
+        sm1.setB(List.of(
+            List.of(2, 4, 5),
+            List.of(1, 8, 8)
+        ));
+        System.out.println("Quantas linhas vai ter cada matriz? 2");
+        System.out.println("Quantas colunas vai ter cada matriz? 3");
+        System.out.println("Digite os valores da matriz A:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.printf("Elemento [%d,%d]: %d%n", i, j, sm1.getA().get(i).get(j));
+            }
+        }
+        System.out.println("Digite os valores da matriz B:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.printf("Elemento [%d,%d]: %d%n", i, j, sm1.getB().get(i).get(j));
+            }
+        }
+        System.out.println("MATRIZ SOMA:");
+        for (List<Integer> linha : sm1.getMatrizSoma()) {
+            for (Integer val : linha) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema ACIMA_DIAGONAL");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        AcimaDiagonal ad1 = new AcimaDiagonal();
+        ad1.setMatriz(List.of(
+            List.of(5, 2, 3, 1),
+            List.of(8, 2, 4, 5),
+            List.of(7, 3, 1, 3),
+            List.of(9, 12, 9, 5)
+        ));
+        System.out.println("Qual a ordem da matriz? 4");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.printf("Elemento [%d,%d]: %d%n", i, j, ad1.getMatriz().get(i).get(j));
+            }
+        }
+        System.out.println("SOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL = " + ad1.getSomaAcimaDiagonal());
+        System.out.println();
+
+        System.out.println("-".repeat(50));
+        System.out.println("Problema MATRIZ_GERAL");
+        System.out.println("-".repeat(50));
+        System.out.println("Exemplo 1:");
+        MatrizGeral mg1 = new MatrizGeral();
+        mg1.setMat(List.of(
+            List.of(7.0, -8.0, 10.0),
+            List.of(-2.0, 3.0, 5.0),
+            List.of(11.0, -15.0, 4.0)
+        ));
+        System.out.println("Qual a ordem da matriz? 3");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.printf("Elemento [%d,%d]: %.1f%n", i, j, mg1.getMat().get(i).get(j));
+            }
+        }
+        System.out.println();
+        System.out.printf("SOMA DOS POSITIVOS: %.1f%n", mg1.getSomaPositivos());
+        System.out.println();
+        System.out.println("Escolha uma linha: 1");
+        System.out.print("LINHA ESCOLHIDA: ");
+        for (Double val : mg1.getLinha(1)) {
+            System.out.printf("%.1f ", val);
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("Escolha uma coluna: 2");
+        System.out.print("COLUNA ESCOLHIDA: ");
+        for (Double val : mg1.getColuna(2)) {
+            System.out.printf("%.1f ", val);
+        }
+        System.out.println();
+        System.out.println();
+        System.out.print("DIAGONAL PRINCIPAL: ");
+        for (Double val : mg1.getDiagonalPrincipal()) {
+            System.out.printf("%.1f ", val);
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("MATRIZ ALTERADA:");
+        for (List<Double> linha : mg1.getMatrizAlterada()) {
+            for (Double val : linha) {
+                System.out.printf("%6.1f ", val);
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("=".repeat(50));
         System.out.println("TODOS OS TESTES EXECUTADOS COM SUCESSO!");
         System.out.println("=".repeat(50));
     }
