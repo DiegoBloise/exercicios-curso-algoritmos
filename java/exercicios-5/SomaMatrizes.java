@@ -20,21 +20,21 @@ public class SomaMatrizes {
         System.out.print("Quantas colunas vai ter cada matriz?: ");
         Integer colunas = sc.nextInt();
 
-        somaMatrizes.inicializarMatriz(linhas, colunas);
-
         System.out.println("Digite os valores da matriz A:");
-        for (int i = 0; i < linhas - 1; i++) {
-            for (int j = 0; j < colunas - 1; j++) {
+        for (int i = 0; i < linhas; i++) {
+            somaMatrizes.getA().add(new ArrayList<>());
+            for (int j = 0; j < colunas; j++) {
                 System.out.printf("Elemento [%d, %d]: ", i, j);
-                somaMatrizes.a.get(i).add(sc.nextInt());
+                somaMatrizes.getA().get(i).add(sc.nextInt());
             }
         }
 
         System.out.println("Digite os valores da matriz B:");
-        for (int i = 0; i < linhas - 1; i++) {
-            for (int j = 0; j < colunas - 1; j++) {
+        for (int i = 0; i < linhas; i++) {
+            somaMatrizes.getB().add(new ArrayList<>());
+            for (int j = 0; j < colunas; j++) {
                 System.out.printf("Elemento [%d, %d]: ", i, j);
-                somaMatrizes.b.get(i).add(sc.nextInt());
+                somaMatrizes.getB().get(i).add(sc.nextInt());
             }
         }
 
@@ -43,23 +43,33 @@ public class SomaMatrizes {
         sc.close();
     }
 
-    private void inicializarMatriz(Integer linhas, Integer colunas) {
-        for (int i = 0; i < linhas - 1; i++) {
-            a.add(new ArrayList<>());
-            b.add(new ArrayList<>());
-            for (int j = 0; j < colunas - 1; j++) {
-                a.add(new ArrayList<>());
-                b.add(new ArrayList<>());
-            }
-        }
-    }
-
     public List<List<Integer>> getSoma() {
-        for (int i = 0; i < a.size() - 1; i++) {
-            for (int j = 0; j < a.getFirst().size() - 1; j++) {
-                soma.get(0).add(a.get(i).get(j) + b.get(i).get(j));
+        for (int i = 0; i < a.size(); i++) {
+            soma.add(new ArrayList<>());
+            for (int j = 0; j < a.get(i).size(); j++) {
+                soma.get(i).add(a.get(i).get(j) + b.get(i).get(j));
             }
         }
         return soma;
+    }
+
+    public List<List<Integer>> getA() {
+        return a;
+    }
+
+    public void setA(List<List<Integer>> a) {
+        this.a = a;
+    }
+
+    public List<List<Integer>> getB() {
+        return b;
+    }
+
+    public void setB(List<List<Integer>> b) {
+        this.b = b;
+    }
+
+    public void setSoma(List<List<Integer>> soma) {
+        this.soma = soma;
     }
 }

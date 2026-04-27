@@ -1,80 +1,97 @@
-Algoritmo "matriz_geral"
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class MatrizGeral {
 
+    private List<List<Double>> mat = new ArrayList<>();
 
-  n, i, j : inteiro
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-  mat : vetor [0..10, 0..10] de real
-  
-  somaPositivos : real
-  
-  index : inteiro
+        MatrizGeral mg = new MatrizGeral();
 
-Inicio
+        System.out.print("Qual a ordem da matriz?: ");
+        Integer n = sc.nextInt();
 
-  escreva("Qual a ordem da matriz?: ")
-  leia(n)
+        for (int i = 0; i < n; i++) {
+            mg.getMat().add(new ArrayList<>());
+            for (int j = 0; j < n; j++) {
+                System.out.print("Elemento [" + i + "," + j + "]: ");
+                mg.getMat().get(i).add(sc.nextDouble());
+            }
+        }
 
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      escreva("Elemento [", i, ",", j, "]:")
-      leia(mat[i, j])
-    fimpara
-  fimpara
+        Double somaPositivos = 0.0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (mg.getMat().get(i).get(j) > 0) {
+                    somaPositivos += mg.getMat().get(i).get(j);
+                }
+            }
+        }
 
-  escreval()
-  somaPositivos == 0
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      if (mat[i, j] > 0) entao
-        somaPositivos == somaPositivos + mat[i, j]
-      fimse
-    fimpara
-  fimpara
-  escreval("SOMA DOS POSITIVOS: ", somaPositivos:1:1)
+        System.out.println();
+        System.out.println("SOMA DOS POSITIVOS: " + String.format("%.1f", somaPositivos));
+        System.out.println();
 
-  escreval()
-  escreva("ESCOLHA UMA LINHA...: ")
-  leia(index)
-  escreva("LINHA ESCOLHIDA.....: ")
-  for i de 0 ate n-1 faca
-    escreva(mat[index, i]:1:1, " ")
-  fimpara
-  escreval()
+        System.out.print("ESCOLHA UMA LINHA...: ");
+        Integer index = sc.nextInt();
 
-  escreval()
-  escreva("ESCOLHA UMA COLUNA..: ")
-  leia(index)
-  escreva("COLUNA ESCOLHIDA....: ")
-  for i de 0 ate n-1 faca
-    escreva(mat[i, index]:1:1, " ")
-  fimpara
-  escreval()
+        System.out.print("LINHA ESCOLHIDA.....: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(mg.getMat().get(index).get(i) + " ");
+        }
+        System.out.println();
 
-  escreval()
-  escreva("DIAGONAL PRINCIPAL..: ")
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      if j == i entao
-        escreva(mat[i, j]:2:1, " ")
-      fimse
-    fimpara
-  fimpara
-  escreval()
+        System.out.println();
+        System.out.print("ESCOLHA UMA COLUNA..: ");
+        Integer colIndex = sc.nextInt();
 
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      if (mat[i, j] < 0) entao
-        mat[i, j] == mat[i, j] ^ 2
-      fimse
-    fimpara
-  fimpara
+        System.out.print("COLUNA ESCOLHIDA....: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(mg.getMat().get(i).get(colIndex) + " ");
+        }
+        System.out.println();
 
-  escreval()
-  escreval("MATRIZ ALTERADA:")
-  for i de 0 ate n-1 faca
-    for j de 0 ate n-1 faca
-      escreva(mat[i, j]:6:1, " ")
-    fimpara
-    escreval()
-  fimpara
+        System.out.println();
+        System.out.print("DIAGONAL PRINCIPAL..: ");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j == i) {
+                    System.out.print(mg.getMat().get(i).get(j) + " ");
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (mg.getMat().get(i).get(j) < 0) {
+                    mg.getMat().get(i).set(j, Math.pow(mg.getMat().get(i).get(j), 2));
+                }
+            }
+        }
+
+        System.out.println();
+        System.out.println();
+        System.out.println("MATRIZ ALTERADA:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(String.format("%6.1f ", mg.getMat().get(i).get(j)));
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        sc.close();
+    }
+
+    public List<List<Double>> getMat() {
+        return mat;
+    }
+
+    public void setMat(List<List<Double>> mat) {
+        this.mat = mat;
+    }
+}
