@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class ValidacaoDeNota {
 
-    private double n1;
-    private double n2;
+    private Double nota1;
+    private Double nota2;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -12,48 +12,46 @@ public class ValidacaoDeNota {
         ValidacaoDeNota validacao = new ValidacaoDeNota();
 
         System.out.print("Digite a primeira nota: ");
-        validacao.lerNotaValida(sc, true);
+        validacao.setNota1(validacao.lerNotaValida(sc));
 
         System.out.print("Digite a segunda nota: ");
-        validacao.lerNotaValida(sc, false);
+        validacao.setNota2(validacao.lerNotaValida(sc));
 
-        double media = (validacao.getN1() + validacao.getN2()) / 2.0;
-        System.out.printf("MEDIA = %.2f%n", media);
+        System.out.printf("MEDIA = %.2f%n", validacao.getMedia());
 
         sc.close();
     }
 
-    public void lerNotaValida(Scanner sc, boolean primeiro) {
-        double nota = -1;
-
+    public Double lerNotaValida(Scanner sc) {
+        Double nota = sc.nextDouble();
         while (nota < 0 || nota > 10) {
+            System.out.print("Valor invalido! Tente novamente: ");
             nota = sc.nextDouble();
-
-            if (nota < 0 || nota > 10) {
-                System.out.print("Valor invalido! Tente novamente: ");
-            }
         }
-
-        if (primeiro) {
-            setN1(nota);
-        } else {
-            setN2(nota);
-        }
+        return nota;
     }
 
-    public double getN1() {
-        return n1;
+    public Double getMedia() {
+        return (nota1 + nota2) / 2.0;
     }
 
-    public void setN1(double n1) {
-        this.n1 = n1;
+    public Boolean isNotaValida() {
+        return nota1 >= 0 && nota1 <= 10 && nota2 >= 0 && nota2 <= 10;
     }
 
-    public double getN2() {
-        return n2;
+    public Double getNota1() {
+        return nota1;
     }
 
-    public void setN2(double n2) {
-        this.n2 = n2;
+    public void setNota1(Double nota1) {
+        this.nota1 = nota1;
+    }
+
+    public Double getNota2() {
+        return nota2;
+    }
+
+    public void setNota2(Double nota2) {
+        this.nota2 = nota2;
     }
 }

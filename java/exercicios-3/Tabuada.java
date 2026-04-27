@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Tabuada {
 
-    private int n;
+    private Integer n;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -19,16 +19,20 @@ public class Tabuada {
     }
 
     public void exibirTabuada() {
-        for (int i = 1; i <= 10; i++) {
+        for (Integer i = 1; i <= 10; i++) {
             System.out.println(String.format("%d x %3d = %d", n, i, n * i));
         }
     }
 
-    public int getN() {
+    public String getLinha(Integer i) {
+        return String.format("%d x %3d = %d", n, i, n * i);
+    }
+
+    public Integer getN() {
         return n;
     }
 
-    public void setN(int n) {
+    public void setN(Integer n) {
         this.n = n;
     }
 }

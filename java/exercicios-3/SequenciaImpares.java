@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class SequenciaImpares {
 
-    private int x;
+    private Integer x;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -19,18 +19,22 @@ public class SequenciaImpares {
     }
 
     public void exibirImpares() {
-        for (int i = 1; i <= x; i++) {
+        for (Integer i = 1; i <= x; i++) {
             if (i % 2 != 0) {
                 System.out.println(i);
             }
         }
     }
 
-    public int getX() {
+    public Boolean isImpar(Integer i) {
+        return i % 2 != 0;
+    }
+
+    public Integer getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(Integer x) {
         this.x = x;
     }
 }

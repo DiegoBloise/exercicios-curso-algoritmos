@@ -3,10 +3,15 @@ import java.util.Scanner;
 
 public class Combustivel {
 
-    private int alcool;
-    private int gasolina;
-    private int diesel;
-    private int opt;
+    private Integer alcool;
+    private Integer gasolina;
+    private Integer diesel;
+
+    public Combustivel() {
+        alcool = 0;
+        gasolina = 0;
+        diesel = 0;
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -19,26 +24,15 @@ public class Combustivel {
     }
 
     public void processarVendas(Scanner sc) {
-        alcool = 0;
-        gasolina = 0;
-        diesel = 0;
-        opt = 0;
-
-        while (opt != 4) {
+        while (true) {
             System.out.print("Informe um codigo (1, 2, 3) ou 4 para parar: ");
-            opt = sc.nextInt();
+            Integer opt = sc.nextInt();
 
-            switch (opt) {
-                case 1:
-                    alcool++;
-                    break;
-                case 2:
-                    gasolina++;
-                    break;
-                case 3:
-                    diesel++;
-                    break;
+            if (opt == 4) {
+                break;
             }
+
+            registrar(opt);
         }
 
         System.out.println("MUITO OBRIGADO");
@@ -47,35 +41,45 @@ public class Combustivel {
         System.out.println("Diesel: " + diesel);
     }
 
-    public int getAlcool() {
+    public void registrar(Integer codigo) {
+        switch (codigo) {
+            case 1:
+                alcool++;
+                break;
+            case 2:
+                gasolina++;
+                break;
+            case 3:
+                diesel++;
+                break;
+        }
+    }
+
+    public Integer getTotal() {
+        return alcool + gasolina + diesel;
+    }
+
+    public Integer getAlcool() {
         return alcool;
     }
 
-    public void setAlcool(int alcool) {
+    public void setAlcool(Integer alcool) {
         this.alcool = alcool;
     }
 
-    public int getGasolina() {
+    public Integer getGasolina() {
         return gasolina;
     }
 
-    public void setGasolina(int gasolina) {
+    public void setGasolina(Integer gasolina) {
         this.gasolina = gasolina;
     }
 
-    public int getDiesel() {
+    public Integer getDiesel() {
         return diesel;
     }
 
-    public void setDiesel(int diesel) {
+    public void setDiesel(Integer diesel) {
         this.diesel = diesel;
-    }
-
-    public int getOpt() {
-        return opt;
-    }
-
-    public void setOpt(int opt) {
-        this.opt = opt;
     }
 }

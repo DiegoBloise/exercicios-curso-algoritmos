@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class Divisao {
 
-    private int qtd;
+    private Integer qtd;
+    private Double numerador;
+    private Double denominador;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -19,29 +21,52 @@ public class Divisao {
     }
 
     public void realizarDivisoes(Scanner sc) {
-        for (int i = 1; i <= qtd; i++) {
+        for (Integer i = 1; i <= qtd; i++) {
             System.out.print("Entre com o numerador: ");
-            double n1 = sc.nextDouble();
+            numerador = sc.nextDouble();
             System.out.print("Entre com o denominador: ");
-            double n2 = sc.nextDouble();
+            denominador = sc.nextDouble();
 
-            if (n1 > 0) {
-                System.out.printf("DIVISAO = %.2f%n", n1 / n2);
+            if (isDivisaoImpossivel()) {
+                System.out.println("DIVISAO IMPOSSIVEL");
             } else {
-                if (n1 != 0) {
-                    System.out.println("DIVISAO IMPOSSIVEL");
-                } else {
-                    System.out.printf("DIVISAO = %.2f%n", 0.0);
-                }
+                System.out.printf("DIVISAO = %.2f%n", getDivisao());
             }
         }
     }
 
-    public int getQtd() {
+    public Double getDivisao() {
+        if (denominador == 0) {
+            return 0.0;
+        }
+        return numerador / denominador;
+    }
+
+    public Boolean isDivisaoImpossivel() {
+        return denominador == 0;
+    }
+
+    public Integer getQtd() {
         return qtd;
     }
 
-    public void setQtd(int qtd) {
+    public void setQtd(Integer qtd) {
         this.qtd = qtd;
+    }
+
+    public Double getNumerador() {
+        return numerador;
+    }
+
+    public void setNumerador(Double numerador) {
+        this.numerador = numerador;
+    }
+
+    public Double getDenominador() {
+        return denominador;
+    }
+
+    public void setDenominador(Double denominador) {
+        this.denominador = denominador;
     }
 }

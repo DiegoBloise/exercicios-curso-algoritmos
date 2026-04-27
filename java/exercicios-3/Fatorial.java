@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Fatorial {
 
-    private int n;
-    private int total;
+    private Integer n;
+    private Integer total;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -19,27 +19,27 @@ public class Fatorial {
         sc.close();
     }
 
-    public int calcularFatorial() {
+    public Integer calcularFatorial() {
         total = 1;
-        for (int i = 1; i <= n; i++) {
+        for (Integer i = 1; i <= n; i++) {
             total = total * i;
         }
         return total;
     }
 
-    public int getN() {
+    public Integer getN() {
         return n;
     }
 
-    public void setN(int n) {
+    public void setN(Integer n) {
         this.n = n;
     }
 
-    public int getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 }

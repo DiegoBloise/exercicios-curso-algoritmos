@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 public class MediaIdades {
 
-    private double idade;
-    private double soma;
-    private int qtd;
+    private Double soma;
+    private Integer qtd;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -19,48 +18,58 @@ public class MediaIdades {
     }
 
     public void calcularMedia(Scanner sc) {
-        idade = 0;
+        Double idade = 0.0;
+        soma = 0.0;
         qtd = 0;
-        soma = 0;
 
         while (idade >= 0) {
             idade = sc.nextDouble();
-
             if (idade >= 0) {
                 soma += idade;
                 qtd++;
             }
         }
 
-        if (qtd > 1) {
-            double media = soma / qtd;
-            System.out.printf("MEDIA = %.2f%n", media);
+        if (qtd > 0) {
+            System.out.printf("MEDIA = %.2f%n", soma / qtd);
         } else {
             System.out.println("IMPOSSIVEL CALCULAR");
         }
     }
 
-    public double getIdade() {
-        return idade;
+    public void processar(Double[] idades) {
+        soma = 0.0;
+        qtd = 0;
+
+        for (Double idade : idades) {
+            if (idade >= 0) {
+                soma += idade;
+                qtd++;
+            }
+        }
     }
 
-    public void setIdade(double idade) {
-        this.idade = idade;
+    public Double getMedia() {
+        return soma / qtd;
     }
 
-    public double getSoma() {
+    public Boolean isImpossivelCalcular() {
+        return qtd == 0;
+    }
+
+    public Double getSoma() {
         return soma;
     }
 
-    public void setSoma(double soma) {
+    public void setSoma(Double soma) {
         this.soma = soma;
     }
 
-    public int getQtd() {
+    public Integer getQtd() {
         return qtd;
     }
 
-    public void setQtd(int qtd) {
+    public void setQtd(Integer qtd) {
         this.qtd = qtd;
     }
 }

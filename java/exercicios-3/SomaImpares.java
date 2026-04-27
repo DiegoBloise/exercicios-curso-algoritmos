@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 public class SomaImpares {
 
-    private int x;
-    private int y;
-    private int soma;
+    private Integer x;
+    private Integer y;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -16,44 +15,37 @@ public class SomaImpares {
         somaImpares.setX(sc.nextInt());
         somaImpares.setY(sc.nextInt());
 
-        somaImpares.calcularSomaImpares();
-        System.out.println("SOMA DOS IMPARES: " + somaImpares.getSoma());
+        System.out.println("SOMA DOS IMPARES = " + somaImpares.getSoma());
 
         sc.close();
     }
 
-    public void calcularSomaImpares() {
-        int step = x < y ? 1 : -1;
-        soma = 0;
+    public Integer getSoma() {
+        Integer menor = Math.min(x, y);
+        Integer maior = Math.max(x, y);
+        Integer soma = 0;
 
-        for (int i = x; (step > 0 && i <= y) || (step < 0 && i >= y); i += step) {
-            if (i % 2 != 0 && i != x && i != y) {
+        for (Integer i = menor + 1; i < maior; i++) {
+            if (i % 2 != 0) {
                 soma += i;
             }
         }
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getSoma() {
         return soma;
     }
 
-    public void setSoma(int soma) {
-        this.soma = soma;
+    public Integer getX() {
+        return x;
+    }
+
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    public Integer getY() {
+        return y;
+    }
+
+    public void setY(Integer y) {
+        this.y = y;
     }
 }

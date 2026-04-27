@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class Experiencias {
 
-    private int sapos;
-    private int ratos;
-    private int coelhos;
-    private int n;
+    private Integer sapos;
+    private Integer ratos;
+    private Integer coelhos;
+    private Integer n;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -26,9 +26,9 @@ public class Experiencias {
         coelhos = 0;
         ratos = 0;
 
-        for (int i = 1; i <= n; i++) {
+        for (Integer i = 1; i <= n; i++) {
             System.out.print("Quantidade de cobaias: ");
-            int qtd = sc.nextInt();
+            Integer qtd = sc.nextInt();
 
             System.out.print("Tipo de cobaia: ");
             String tipoCobaia = sc.next();
@@ -46,48 +46,62 @@ public class Experiencias {
             }
         }
 
-        int total = sapos + ratos + coelhos;
-
         System.out.println();
         System.out.println("RELATORIO FINAL:");
-        System.out.println("Total: " + total + " cobaias");
+        System.out.println("Total: " + getTotal() + " cobaias");
         System.out.println("Total de coelhos: " + coelhos);
         System.out.println("Total de ratos: " + ratos);
         System.out.println("Total de sapos: " + sapos);
-        System.out.printf("Percentual de coelhos: %.2f%n", (coelhos / (double) total * 100));
-        System.out.printf("Percentual de ratos: %.2f%n", (ratos / (double) total * 100));
-        System.out.printf("Percentual de sapos: %.2f%n", (sapos / (double) total * 100));
+        System.out.printf("Percentual de coelhos: %.2f%n", getPercentualCoelhos());
+        System.out.printf("Percentual de ratos: %.2f%n", getPercentualRatos());
+        System.out.printf("Percentual de sapos: %.2f%n", getPercentualSapos());
     }
 
-    public int getSapos() {
+    public Integer getTotal() {
+        return sapos + ratos + coelhos;
+    }
+
+    public Double getPercentualCoelhos() {
+        return (coelhos / (double) getTotal() * 100);
+    }
+
+    public Double getPercentualRatos() {
+        return (ratos / (double) getTotal() * 100);
+    }
+
+    public Double getPercentualSapos() {
+        return (sapos / (double) getTotal() * 100);
+    }
+
+    public Integer getSapos() {
         return sapos;
     }
 
-    public void setSapos(int sapos) {
+    public void setSapos(Integer sapos) {
         this.sapos = sapos;
     }
 
-    public int getRatos() {
+    public Integer getRatos() {
         return ratos;
     }
 
-    public void setRatos(int ratos) {
+    public void setRatos(Integer ratos) {
         this.ratos = ratos;
     }
 
-    public int getCoelhos() {
+    public Integer getCoelhos() {
         return coelhos;
     }
 
-    public void setCoelhos(int coelhos) {
+    public void setCoelhos(Integer coelhos) {
         this.coelhos = coelhos;
     }
 
-    public int getN() {
+    public Integer getN() {
         return n;
     }
 
-    public void setN(int n) {
+    public void setN(Integer n) {
         this.n = n;
     }
 }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class SenhaFixa {
 
-    private static final int SENHA = 2002;
+    private static final Integer SENHA = 2002;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -17,13 +17,25 @@ public class SenhaFixa {
 
     public void validarSenha(Scanner sc) {
         System.out.print("Digite a senha: ");
-        int tentativa = sc.nextInt();
+        Integer tentativa = sc.nextInt();
 
-        while (tentativa != SENHA) {
+        while (!validar(tentativa)) {
             System.out.print("Senha Invalida! Tente novamente: ");
             tentativa = sc.nextInt();
         }
 
         System.out.println("Acesso permitido!");
+    }
+
+    public Boolean validar(Integer tentativa) {
+        return tentativa.equals(SENHA);
+    }
+
+    public String getMensagemErro() {
+        return "Senha Invalida! Tente novamente: ";
+    }
+
+    public String getMensagemSucesso() {
+        return "Acesso permitido!";
     }
 }

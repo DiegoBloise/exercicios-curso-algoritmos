@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 public class Quadrante {
 
-    private double x;
-    private double y;
-    private String msg;
+    private Double x;
+    private Double y;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -18,57 +17,48 @@ public class Quadrante {
     }
 
     public void determinarQuadrante(Scanner sc) {
-        x = 1;
-        y = 1;
-
-        while (x != 0 || y != 0) {
+        while (true) {
             System.out.println("Digite os valores das coordenadas X e Y:");
             x = sc.nextDouble();
             y = sc.nextDouble();
 
-            if (x > 0) {
-                if (y < 0) {
-                    msg = "QUADRANTE Q4";
-                } else {
-                    msg = "QUADRANTE Q1";
-                }
+            if (isEixo()) {
+                break;
             }
 
-            if (x < 0) {
-                if (y > 0) {
-                    msg = "QUADRANTE Q2";
-                } else {
-                    msg = "QUADRANTE Q3";
-                }
-            }
-
-            if (x != 0 || y != 0) {
-                System.out.println(msg);
-            }
+            System.out.println(getQuadrante());
         }
     }
 
-    public double getX() {
+    public String getQuadrante() {
+        if (x > 0 && y > 0) {
+            return "QUADRANTE Q1";
+        } else if (x < 0 && y > 0) {
+            return "QUADRANTE Q2";
+        } else if (x < 0 && y < 0) {
+            return "QUADRANTE Q3";
+        } else {
+            return "QUADRANTE Q4";
+        }
+    }
+
+    public Boolean isEixo() {
+        return x == 0 || y == 0;
+    }
+
+    public Double getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public double getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(Double y) {
         this.y = y;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 }
