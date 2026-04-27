@@ -50,6 +50,9 @@ public class MediaIdades {
     }
 
     public Double getMedia() {
+        if (isImpossivelCalcular()) {
+            return null;
+        }
         return soma / qtd;
     }
 

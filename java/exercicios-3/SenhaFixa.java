@@ -16,15 +16,16 @@ public class SenhaFixa {
     }
 
     public void validarSenha(Scanner sc) {
-        System.out.print("Digite a senha: ");
-        Integer tentativa = sc.nextInt();
-
-        while (!validar(tentativa)) {
-            System.out.print("Senha Invalida! Tente novamente: ");
+        Integer tentativa;
+        do {
+            System.out.print("Digite a senha: ");
             tentativa = sc.nextInt();
-        }
+            if (!validar(tentativa)) {
+                System.out.print("Senha Invalida! Tente novamente: ");
+            }
+        } while (!validar(tentativa));
 
-        System.out.println("Acesso permitido!");
+        System.out.println("Acesso Permitido");
     }
 
     public Boolean validar(Integer tentativa) {
@@ -36,6 +37,6 @@ public class SenhaFixa {
     }
 
     public String getMensagemSucesso() {
-        return "Acesso permitido!";
+        return "Acesso Permitido";
     }
 }

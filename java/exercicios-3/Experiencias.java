@@ -46,6 +46,33 @@ public class Experiencias {
             }
         }
 
+        imprimirRelatorio();
+    }
+
+    public void processarCobaias(Integer[] quantities, String[] types) {
+        sapos = 0;
+        coelhos = 0;
+        ratos = 0;
+
+        for (Integer i = 0; i < quantities.length; i++) {
+            Integer qtd = quantities[i];
+            String tipoCobaia = types[i];
+
+            switch (tipoCobaia) {
+                case "S":
+                    sapos += qtd;
+                    break;
+                case "R":
+                    ratos += qtd;
+                    break;
+                case "C":
+                    coelhos += qtd;
+                    break;
+            }
+        }
+    }
+
+    public void imprimirRelatorio() {
         System.out.println();
         System.out.println("RELATORIO FINAL:");
         System.out.println("Total: " + getTotal() + " cobaias");
