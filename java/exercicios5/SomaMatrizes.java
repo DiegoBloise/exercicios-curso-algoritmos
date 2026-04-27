@@ -7,7 +7,6 @@ public class SomaMatrizes {
 
     private List<List<Integer>> a = new ArrayList<>();
     private List<List<Integer>> b = new ArrayList<>();
-    private List<List<Integer>> soma = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -38,12 +37,19 @@ public class SomaMatrizes {
             }
         }
 
-        System.out.println("MATRIZ SOMA: " + somaMatrizes.getSoma());
+        System.out.println("MATRIZ SOMA:");
+        for (List<Integer> linha : somaMatrizes.getMatrizSoma()) {
+            for (Integer val : linha) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
 
         sc.close();
     }
 
-    public List<List<Integer>> getSoma() {
+    public List<List<Integer>> getMatrizSoma() {
+        List<List<Integer>> soma = new ArrayList<>();
         for (int i = 0; i < a.size(); i++) {
             soma.add(new ArrayList<>());
             for (int j = 0; j < a.get(i).size(); j++) {
@@ -67,9 +73,5 @@ public class SomaMatrizes {
 
     public void setB(List<List<Integer>> b) {
         this.b = b;
-    }
-
-    public void setSoma(List<List<Integer>> soma) {
-        this.soma = soma;
     }
 }

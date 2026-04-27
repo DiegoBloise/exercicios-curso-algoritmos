@@ -23,9 +23,13 @@ public class DiagonalNegativos {
             }
         }
 
-        System.out.println("DIAGONAL PRINCIPAL: " + diagonalNegativos.getDiagonalPrincipal());
+        System.out.print("DIAGONAL PRINCIPAL: ");
+        for (Integer val : diagonalNegativos.getDiagonalPrincipal()) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
 
-        System.out.println("QUANTIDADE DE NEGATIVOS: " + diagonalNegativos.getTotalNegativos());
+        System.out.println("QUANTIDADE DE NEGATIVOS = " + diagonalNegativos.getTotalNegativos());
 
         sc.close();
     }

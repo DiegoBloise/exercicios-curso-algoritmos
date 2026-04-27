@@ -23,7 +23,10 @@ public class CadaLinha {
             }
         }
 
-        System.out.println("MAIOR ELEMENTO DE CADA LINHA: " + cadaLinha.getMaiorCadaLinha().toString());
+        System.out.println("MAIOR ELEMENTO DE CADA LINHA:");
+        for (Integer val : cadaLinha.getMaiorCadaLinha()) {
+            System.out.println(val);
+        }
 
         sc.close();
     }
@@ -31,12 +34,13 @@ public class CadaLinha {
     public List<Integer> getMaiorCadaLinha() {
         List<Integer> maiores = new ArrayList<>();
         for (int i = 0; i < matriz.size(); i++) {
-            maiores.add(matriz.get(i).get(i));
-            for (int j = 0; j < matriz.get(i).size(); j++) {
-                if (matriz.get(i).get(j) > maiores.get(i)) {
-                    maiores.set(i, matriz.get(i).get(j));
+            Integer maior = matriz.get(i).get(0);
+            for (int j = 1; j < matriz.get(i).size(); j++) {
+                if (matriz.get(i).get(j) > maior) {
+                    maior = matriz.get(i).get(j);
                 }
             }
+            maiores.add(maior);
         }
         return maiores;
     }

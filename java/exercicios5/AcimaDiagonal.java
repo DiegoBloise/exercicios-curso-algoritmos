@@ -36,12 +36,8 @@ public class AcimaDiagonal {
             for (int j = 0; j < matriz.get(i).size(); j++) {
                 if (j > i) {
                     soma += matriz.get(i).get(j);
-                    System.out.printf("%3d", matriz.get(i).get(j));
-                } else {
-                    System.out.printf("%3s", "-");
                 }
             }
-            System.out.println();
         }
         return soma;
     }

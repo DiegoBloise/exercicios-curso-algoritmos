@@ -27,15 +27,23 @@ public class NegativosMatriz {
         }
 
         System.out.println("VALORES NEGATIVOS:");
-        for (int i = 0; i < linhas; i++) {
-            for (int j = 0; j < colunas; j++) {
-                if (nm.getMatriz().get(i).get(j) < 0) {
-                    System.out.println(nm.getMatriz().get(i).get(j));
-                }
-            }
+        for (Integer val : nm.getValoresNegativos()) {
+            System.out.println(val);
         }
 
         sc.close();
+    }
+
+    public List<Integer> getValoresNegativos() {
+        List<Integer> negativos = new ArrayList<>();
+        for (int i = 0; i < matriz.size(); i++) {
+            for (int j = 0; j < matriz.get(i).size(); j++) {
+                if (matriz.get(i).get(j) < 0) {
+                    negativos.add(matriz.get(i).get(j));
+                }
+            }
+        }
+        return negativos;
     }
 
     public List<List<Integer>> getMatriz() {
