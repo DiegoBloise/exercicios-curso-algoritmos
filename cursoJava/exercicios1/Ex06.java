@@ -7,7 +7,7 @@ public class Ex06 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-        System.out.println("Digite os valores de A, B e C:");
+        System.out.print("Digite os valores de A, B e C: ");
 
         String entrada = sc.nextLine();
         String[] dados = entrada.split(" ");

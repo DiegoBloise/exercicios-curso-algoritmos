@@ -7,7 +7,7 @@ public class Ex05 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-        System.out.println("Digite os dados da peça 1 (código, quantidade e valor):");
+        System.out.print("Digite os dados da peça 1 (código, quantidade e valor): ");
 
         String peca1 = sc.nextLine();
         String[] peca1Dados = peca1.split(" ");
@@ -16,7 +16,7 @@ public class Ex05 {
         int quantidadePeca1 = Integer.parseInt(peca1Dados[1]);
         double valorPeca1 = Double.parseDouble(peca1Dados[2]);
 
-        System.out.println("Digite os dados da peça 2 (código, quantidade e valor):");
+        System.out.print("Digite os dados da peça 2 (código, quantidade e valor): ");
         String peca2 = sc.nextLine();
         String[] peca2Dados = peca2.split(" ");
 
