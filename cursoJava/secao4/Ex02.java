@@ -1,4 +1,4 @@
-package cursoJava.exercicios1;
+package cursoJava.secao4;
 
 import java.util.Locale;
 import java.util.Scanner;

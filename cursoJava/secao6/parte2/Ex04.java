@@ -1,32 +1,29 @@
-package cursoJava.exercicios4;
+package cursoJava.secao6.parte2;
 
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Ex03 {
+public class Ex04 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-        System.out.println("Número de testes: ");
+        System.out.println("Quantidade de casos: ");
+
         int n = sc.nextInt();
         sc.nextLine();
 
         String[] entrada = new String[n];
-
         for (int i = 0; i < n; i++) {
             entrada[i] = sc.nextLine();
         }
 
         for (int i = 0; i < n; i++) {
             String[] valores = entrada[i].split(" ");
-            double a = Double.parseDouble(valores[0]);
-            double b = Double.parseDouble(valores[1]);
-            double c = Double.parseDouble(valores[2]);
+            int a = Integer.parseInt(valores[0]);
+            int b = Integer.parseInt(valores[1]);
 
-            double media = (a * 2 + b * 3 + c * 5) / 10;
-
-            System.out.printf("%.1f%n", media);
+            System.out.println(b == 0 ? "divisao impossivel" : (double) a / b);
         }
 
         sc.close();

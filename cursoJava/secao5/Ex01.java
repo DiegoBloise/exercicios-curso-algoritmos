@@ -1,10 +1,9 @@
-package cursoJava.exercicios4;
+package cursoJava.secao5;
 
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Ex06 {
-
+public class Ex01 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
@@ -12,9 +11,7 @@ public class Ex06 {
 
         int n = sc.nextInt();
 
-        for (int i = 1; i <= n; i++) {
-            System.out.print(n % i == 0 ? i + "\n" : "");
-        }
+        System.out.println(n < 0 ? "NEGATIVO" : "NÃO NEGATIVO");
 
         sc.close();
     }

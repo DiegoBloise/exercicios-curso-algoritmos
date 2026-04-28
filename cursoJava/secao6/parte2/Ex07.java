@@ -1,9 +1,10 @@
-package cursoJava.exercicios2;
+package cursoJava.secao6.parte2;
 
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Ex02 {
+public class Ex07 {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
@@ -11,7 +12,9 @@ public class Ex02 {
 
         int n = sc.nextInt();
 
-        System.out.println(n % 2 == 0 ? "PAR" : "ÍMPAR");
+        for (int i = 1; i <= n; i++) {
+            System.out.printf("%d %.0f %.0f\n", i, Math.pow(i, 2), Math.pow(i, 3));
+        }
 
         sc.close();
     }
