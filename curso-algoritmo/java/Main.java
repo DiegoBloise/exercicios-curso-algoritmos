@@ -1197,7 +1197,7 @@ public class Main {
         System.out.println("Problema DADOS_PESSOAS");
         System.out.println("-".repeat(50));
         System.out.println("Exemplo 1:");
-        DadosPessoas dp1 = new DadosPessoas();
+        Pensionato dp1 = new Pensionato();
         Double[] alturasDp = { 1.70, 1.83, 1.54, 1.61, 1.75 };
         String[] generosDp = { "F", "M", "M", "F", "F" };
         dp1.setAlturas(List.of(alturasDp));
