@@ -13,15 +13,15 @@ public class ContractService {
 
     public void processContract(Contract contract, Integer months) {
         for (int month = 1; month <= months; month++) {
-            LocalDate dueDate = contract.getDate().plusMonths(month);
+            OnlinePaymentService service = new PaypalService();
 
             Double baseValue = contract.getTotalValue() / months;
 
-            Double fees = baseValue * 0.01 * month;
+            Double interest = service.interest(baseValue, month);
+            Double paymentFee = service.paymentFee(baseValue + interest);
 
-            Double paymentTax = (baseValue + fees) * 0.02;
-
-            Double amount = baseValue + fees + paymentTax;
+            LocalDate dueDate = contract.getDate().plusMonths(month);
+            Double amount = baseValue + interest + paymentFee;
 
             contract.addInstallments(new Installment(dueDate, amount));
         }

@@ -2,15 +2,18 @@ package services;
 
 public class PaypalService implements OnlinePaymentService {
 
+    private Double INTEREST = 0.01;
+    private Double FEE = 0.02;
+
     public PaypalService() {
 
     }
 
     public Double paymentFee(Double amount) {
-        return 0.0;
+        return amount * FEE;
     }
 
     public Double interest(Double amount, Integer months) {
-        return 0.0;
+        return amount * INTEREST * months;
     }
 }
