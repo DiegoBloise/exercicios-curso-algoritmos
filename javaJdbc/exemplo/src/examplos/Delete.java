@@ -1,12 +1,13 @@
-package service;
+package examplos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db.DB;
+import db.exceptions.DbIntegrityException;
 
-public class Update {
+public class Delete {
     public static void main(String[] args) {
 
         Connection conn = null;
@@ -15,19 +16,17 @@ public class Update {
         try {
             conn = DB.getConnection();
             statement = conn.prepareStatement(
-                    "UPDATE seller " +
-                            "SET BaseSalary = BaseSalary + ? " +
-                            "WHERE (DepartmentId = ?)");
+                    "DELETE FROM department " +
+                            "WHERE id = ?");
 
-            statement.setDouble(1, 200.0);
-            statement.setInt(2, 2);
+            statement.setInt(1, 5);
 
             int rowAffected = statement.executeUpdate();
 
             System.out.println("Done! Rows affected: " + rowAffected);
 
         } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+            throw new DbIntegrityException(e.getMessage());
         } finally {
             DB.closeStatement(statement);
             DB.closeConnection();
