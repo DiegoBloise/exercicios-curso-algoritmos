@@ -66,6 +66,7 @@ public class DepartmentDaoJdbc implements DepartmentDao {
                             + "WHERE Id = ?");
 
             statement.setString(1, department.getName());
+            statement.setInt(2, department.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -75,6 +76,8 @@ public class DepartmentDaoJdbc implements DepartmentDao {
         }
     }
 
+    // TODO: lógica de deletar um departamento depende da regra de negócio
+    // Cascade Type
     @Override
     public void deleteById(Integer id) {
         PreparedStatement statement = null;
@@ -106,7 +109,7 @@ public class DepartmentDaoJdbc implements DepartmentDao {
 
             statement = conn.prepareStatement(
                     "SELECT * FROM department "
-                            + "WHERE department.Id = ?");
+                            + "WHERE Id = ?");
 
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
@@ -127,7 +130,7 @@ public class DepartmentDaoJdbc implements DepartmentDao {
     }
 
     private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
-        return new Department(resultSet.getInt("DepartmentId"), resultSet.getString("DepName"));
+        return new Department(resultSet.getInt("Id"), resultSet.getString("Name"));
     }
 
     @Override
