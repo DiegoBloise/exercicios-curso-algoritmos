@@ -184,14 +184,14 @@ public class SellerDaoJdbc implements SellerDao {
             while (resultSet.next()) {
                 Integer departmentId = resultSet.getInt("DepartmentId");
 
-                Department existingDepartment = map.get(departmentId);
+                Department department = map.get(departmentId);
 
-                if (existingDepartment == null) {
-                    Department newDepartment = instantiateDepartment(resultSet);
-                    map.put(departmentId, newDepartment);
+                if (department == null) {
+                    department = instantiateDepartment(resultSet);
+                    map.put(department.getId(), department);
                 }
 
-                Seller existingSeller = instantiateSeller(resultSet, existingDepartment);
+                Seller existingSeller = instantiateSeller(resultSet, department);
 
                 sellers.add(existingSeller);
             }
@@ -217,7 +217,7 @@ public class SellerDaoJdbc implements SellerDao {
                     "SELECT seller.*, department.Name as DepName "
                             + "FROM seller INNER JOIN department "
                             + "ON seller.DepartmentId = department.Id "
-                            + "WHERE DepartmentId = ?"
+                            + "WHERE DepartmentId = ? "
                             + "ORDER BY Name");
 
             statement.setInt(1, department.getId());
@@ -229,14 +229,14 @@ public class SellerDaoJdbc implements SellerDao {
             while (resultSet.next()) {
                 Integer departmentId = resultSet.getInt("DepartmentId");
 
-                Department existingDepartment = map.get(departmentId);
+                department = map.get(departmentId);
 
-                if (existingDepartment == null) {
-                    Department newDepartment = instantiateDepartment(resultSet);
-                    map.put(departmentId, newDepartment);
+                if (department == null) {
+                    department = instantiateDepartment(resultSet);
+                    map.put(department.getId(), department);
                 }
 
-                Seller existingSeller = instantiateSeller(resultSet, existingDepartment);
+                Seller existingSeller = instantiateSeller(resultSet, department);
 
                 sellers.add(existingSeller);
             }

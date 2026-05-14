@@ -16,12 +16,12 @@ public class App {
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
         // TEST 1: seller findById
-        System.out.println("=== TEST 1: seller findById =====");
+        System.out.println("=== TEST 1: seller findById ( ID = 3 ) =====");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
 
         // TEST 2: seller findByDepartment
-        System.out.println("\n=== TEST 2: seller findByDepartment =====");
+        System.out.println("\n=== TEST 2: seller findByDepartment ( ID = 2 ) =====");
         Department department = new Department(2, null);
         List<Seller> list = sellerDao.findByDepartment(department);
         for (Seller obj : list) {
