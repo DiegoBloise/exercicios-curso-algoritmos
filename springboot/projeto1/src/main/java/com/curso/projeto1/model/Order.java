@@ -33,6 +33,11 @@ public class Order implements Serializable {
 
     private Instant moment;
 
+    public Order(Instant moment, User client) {
+        this.moment = moment;
+        this.client = client;
+    }
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;

@@ -1,12 +1,15 @@
 package com.curso.projeto1.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.curso.projeto1.model.Order;
 import com.curso.projeto1.model.User;
+import com.curso.projeto1.repository.OrderRepository;
 import com.curso.projeto1.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,21 +20,27 @@ import lombok.RequiredArgsConstructor;
 public class TestConfig implements CommandLineRunner {
 
     private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        userRepository.saveAll(Arrays.asList(
-                new User(
-                        null,
-                        "Maria",
-                        "maria@mail.com",
-                        "911111111",
-                        "12345"),
-                new User(
-                        null,
-                        "Alex Green",
-                        "alex@mail.com",
-                        "922222222",
-                        "12345")));
+        User user1 = new User(
+                "Maria",
+                "maria@mail.com",
+                "911111111",
+                "12345");
+
+        User user2 = new User(
+                "Alex Green",
+                "alex@mail.com",
+                "922222222",
+                "12345");
+
+        Order order1 = new Order(Instant.parse("2019-06-20T19:53:07Z"), user1);
+        Order order2 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user2);
+        Order order3 = new Order(Instant.parse("2019-07-22T15:21:22Z"), user1);
+
+        userRepository.saveAll(Arrays.asList(user1, user2));
+        orderRepository.saveAll(Arrays.asList(order1, order2, order3));
     }
 }
