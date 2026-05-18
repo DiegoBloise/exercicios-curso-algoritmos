@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Profile;
 import com.curso.projeto1.enums.OrderStatus;
 import com.curso.projeto1.model.Category;
 import com.curso.projeto1.model.Order;
+import com.curso.projeto1.model.Product;
 import com.curso.projeto1.model.User;
 import com.curso.projeto1.repository.CategoryRepository;
 import com.curso.projeto1.repository.OrderRepository;
+import com.curso.projeto1.repository.ProductRepository;
 import com.curso.projeto1.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class TestConfig implements CommandLineRunner {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -47,8 +50,15 @@ public class TestConfig implements CommandLineRunner {
         Category category2 = new Category("Books");
         Category category3 = new Category("Computers");
 
+        Product product1 = new Product("The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product product2 = new Product("Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product product3 = new Product("Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product product4 = new Product("PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product product5 = new Product("Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         userRepository.saveAll(Arrays.asList(user1, user2));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
     }
 }

@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @EqualsAndHashCode
 @Entity
-public class Category implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,10 +31,22 @@ public class Category implements Serializable {
     @Setter
     private String name;
 
-    @Transient
-    private Set<Product> products = new HashSet<>();
+    @Setter
+    private String description;
 
-    public Category(String name) {
+    @Setter
+    private Double price;
+
+    @Setter
+    private String imgUrl;
+
+    public Product(String name, String description, Double price, String imgUrl) {
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
+
+    @Transient
+    private Set<Category> categories = new HashSet<>();
 }
