@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.curso.projeto1.model.User;
-import com.curso.projeto1.service.UserService;
+import com.curso.projeto1.model.Category;
+import com.curso.projeto1.service.CategoryService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/categories")
 @RequiredArgsConstructor
-public class UserController {
+public class CategoryController {
 
-    private final UserService service;
+    private final CategoryService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<Category>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id) {
+    public ResponseEntity<Category> findById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 }
