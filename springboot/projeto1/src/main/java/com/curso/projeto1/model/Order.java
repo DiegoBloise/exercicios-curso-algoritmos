@@ -1,14 +1,14 @@
 package com.curso.projeto1.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -19,10 +19,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "tb_user")
-public class User implements Serializable {
+@Table(name = "tb_order")
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,18 +31,9 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    private String name;
+    private Instant moment;
 
-    @Setter
-    private String email;
-
-    @Setter
-    private String phone;
-
-    @Setter
-    private String password;
-
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private User client;
 }
