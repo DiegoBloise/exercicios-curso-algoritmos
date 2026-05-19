@@ -69,6 +69,12 @@ public class Order implements Serializable {
         this.client = client;
     }
 
+    public Double getTotal() {
+        return items.stream()
+                .map(item -> item.getSubTotal())
+                .reduce(0.0, Double::sum);
+    }
+
     public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);
     }
