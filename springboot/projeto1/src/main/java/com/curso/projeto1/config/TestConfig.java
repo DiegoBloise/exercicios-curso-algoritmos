@@ -11,6 +11,7 @@ import com.curso.projeto1.enums.OrderStatus;
 import com.curso.projeto1.model.Category;
 import com.curso.projeto1.model.Order;
 import com.curso.projeto1.model.OrderItem;
+import com.curso.projeto1.model.Payment;
 import com.curso.projeto1.model.Product;
 import com.curso.projeto1.model.User;
 import com.curso.projeto1.repository.CategoryRepository;
@@ -76,5 +77,9 @@ public class TestConfig implements CommandLineRunner {
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
         productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
         orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
+        Payment payment = new Payment(Instant.parse("2019-06-20T21:53:07Z"), order1);
+        order1.setPayment(payment);
+        orderRepository.save(order1);
     }
 }
