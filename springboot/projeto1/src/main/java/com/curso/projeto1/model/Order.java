@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.curso.projeto1.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -47,6 +48,11 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @OneToMany(mappedBy = "order")
     @JsonManagedReference

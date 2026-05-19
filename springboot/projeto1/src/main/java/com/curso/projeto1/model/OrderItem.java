@@ -46,6 +46,7 @@ public class OrderItem implements Serializable {
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

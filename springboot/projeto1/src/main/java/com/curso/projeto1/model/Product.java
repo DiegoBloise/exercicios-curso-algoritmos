@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +43,14 @@ public class Product implements Serializable {
     @Setter
     private String imgUrl;
 
+    @ManyToMany
+    @JoinTable(name = "tb_products_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product(String name, String description, Double price, String imgUrl) {
         this.name = name;
         this.description = description;
@@ -47,9 +58,11 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    @ManyToMany
-    @JoinTable(name = "tb_products_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new HashSet<>();
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        items.forEach(item -> set.add(item.getOrder()));
+        return set;
+    }
 
     @Override
     public int hashCode() {
