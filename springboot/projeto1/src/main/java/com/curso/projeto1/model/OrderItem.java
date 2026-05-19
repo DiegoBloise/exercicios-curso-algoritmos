@@ -1,16 +1,16 @@
 package com.curso.projeto1.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +19,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity
-public class Product implements Serializable {
+@Table(name = "tb_orders_items")
+public class OrderItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,38 +30,33 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    private String name;
+    private Integer quantity;
 
-    @Setter
-    private String description;
-
-    @Setter
     private Double price;
 
-    @Setter
-    private String imgUrl;
-
-    public Product(String name, String description, Double price, String imgUrl) {
-        this.name = name;
-        this.description = description;
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
         this.price = price;
-        this.imgUrl = imgUrl;
     }
 
-    @ManyToMany
-    @JoinTable(name = "tb_products_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new HashSet<>();
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
-        result = prime * result + ((imgUrl == null) ? 0 : imgUrl.hashCode());
         return result;
     }
 
@@ -71,31 +68,21 @@ public class Product implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Product other = (Product) obj;
+        OrderItem other = (OrderItem) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (quantity == null) {
+            if (other.quantity != null)
                 return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (description == null) {
-            if (other.description != null)
-                return false;
-        } else if (!description.equals(other.description))
+        } else if (!quantity.equals(other.quantity))
             return false;
         if (price == null) {
             if (other.price != null)
                 return false;
         } else if (!price.equals(other.price))
-            return false;
-        if (imgUrl == null) {
-            if (other.imgUrl != null)
-                return false;
-        } else if (!imgUrl.equals(other.imgUrl))
             return false;
         return true;
     }
