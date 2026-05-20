@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public User update(Long id, User updatedUser) {
-        User existingUser = repository.getReferenceById(id);
+        User existingUser = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         updateUser(existingUser, updatedUser);
         return repository.save(existingUser);
     }
