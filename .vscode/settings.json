@@ -18,5 +18,6 @@
       "username": "root",
       "database": "cursojdbc"
     }
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
