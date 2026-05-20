@@ -1,4 +1,4 @@
-package com.curso.projeto1.controller;
+package com.curso.projeto1.resources;
 
 import java.util.List;
 
@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.curso.projeto1.model.Category;
-import com.curso.projeto1.service.CategoryService;
+import com.curso.projeto1.model.Order;
+import com.curso.projeto1.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/orders")
 @RequiredArgsConstructor
-public class CategoryController {
+public class OrderController {
 
-    private final CategoryService service;
+    private final OrderService service;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
+    public ResponseEntity<List<Order>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id) {
+    public ResponseEntity<Order> findById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 }

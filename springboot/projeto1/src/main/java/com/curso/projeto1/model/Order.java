@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.curso.projeto1.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -42,6 +43,7 @@ public class Order implements Serializable {
     private Long id;
 
     @EqualsAndHashCode.Include
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
     @EqualsAndHashCode.Include

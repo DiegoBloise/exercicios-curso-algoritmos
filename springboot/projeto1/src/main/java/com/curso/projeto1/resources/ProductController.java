@@ -1,4 +1,4 @@
-package com.curso.projeto1.controller;
+package com.curso.projeto1.resources;
 
 import java.util.List;
 
