@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.curso.projeto2.dto.UserDTO;
+import com.curso.projeto2.mapper.UserMapper;
 import com.curso.projeto2.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,7 @@ public class UserService {
     public List<UserDTO> findAll() {
         return repository.findAll()
                 .stream()
-                .map(user -> new UserDTO(
-                        user.getId(),
-                        user.getName(),
-                        user.getEmail()))
+                .map(user -> UserMapper.toDTO(user))
                 .toList();
     }
 }
