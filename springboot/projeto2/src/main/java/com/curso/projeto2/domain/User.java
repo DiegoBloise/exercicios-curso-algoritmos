@@ -2,7 +2,9 @@ package com.curso.projeto2.domain;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,16 +14,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
+@Document(collection = "user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    @Id
+    private String id;
 
     private String name;
 
     private String email;
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     @Override
     public int hashCode() {
