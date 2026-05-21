@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.curso.projeto2.domain.User;
 import com.curso.projeto2.dto.UserDTO;
 import com.curso.projeto2.mapper.UserMapper;
 import com.curso.projeto2.repository.UserRepository;
+import com.curso.projeto2.service.exceptions.ObjectNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,5 +23,12 @@ public class UserService {
                 .stream()
                 .map(user -> UserMapper.toDTO(user))
                 .toList();
+    }
+
+    public UserDTO findById(String id) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(id));
+
+        return UserMapper.toDTO(user);
     }
 }
