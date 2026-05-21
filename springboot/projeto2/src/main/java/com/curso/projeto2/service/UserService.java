@@ -31,4 +31,9 @@ public class UserService {
 
         return UserMapper.toDTO(user);
     }
+
+    public UserDTO insert(UserDTO dto) {
+        User newUser = UserMapper.toEntity(dto);
+        return UserMapper.toDTO(repository.insert(newUser));
+    }
 }
