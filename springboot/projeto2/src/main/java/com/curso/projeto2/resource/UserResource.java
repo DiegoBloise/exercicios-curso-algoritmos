@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.curso.projeto2.domain.User;
+import com.curso.projeto2.dto.UserDTO;
 import com.curso.projeto2.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class UserResource {
     private final UserService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<UserDTO>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 }
