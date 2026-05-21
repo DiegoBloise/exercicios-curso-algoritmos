@@ -37,8 +37,22 @@ public class UserService {
         return UserMapper.toDTO(repository.insert(newUser));
     }
 
+    public UserDTO update(String id, UserDTO updatedUser) {
+        User existingUser = repository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(id));
+
+        updateUser(existingUser, updatedUser);
+
+        return UserMapper.toDTO(repository.save(existingUser));
+    }
+
     public void delete(String id) {
         findById(id);
         repository.deleteById(id);
+    }
+
+    private void updateUser(User existingUser, UserDTO updatedUser) {
+        existingUser.setName(updatedUser.name());
+        existingUser.setEmail(updatedUser.email());
     }
 }
