@@ -9,6 +9,16 @@
       "projectName": "projeto1",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Projeto2Application<projeto2>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.curso.projeto2.Projeto2Application",
+      "projectName": "projeto2",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
