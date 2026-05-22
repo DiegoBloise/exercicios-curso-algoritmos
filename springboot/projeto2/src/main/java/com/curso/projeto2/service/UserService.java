@@ -21,7 +21,7 @@ public class UserService {
     public List<UserDTO> findAll() {
         return repository.findAll()
                 .stream()
-                .map(user -> UserMapper.toDTO(user))
+                .map(UserMapper::toDTO)
                 .toList();
     }
 
