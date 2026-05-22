@@ -1,7 +1,10 @@
 package com.curso.projeto2.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.persistence.Id;
@@ -25,6 +28,9 @@ public class User implements Serializable {
     private String name;
 
     private String email;
+
+    @DBRef
+    private List<Post> posts = new ArrayList<>();
 
     public User(String name, String email) {
         this.name = name;

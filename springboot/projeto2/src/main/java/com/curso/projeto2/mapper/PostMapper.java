@@ -1,5 +1,7 @@
 package com.curso.projeto2.mapper;
 
+import java.util.List;
+
 import com.curso.projeto2.domain.Post;
 import com.curso.projeto2.dto.PostDTO;
 
@@ -21,5 +23,13 @@ public class PostMapper {
                 dto.title(),
                 dto.body(),
                 UserMapper.toEntity(dto.author()));
+    }
+
+    public static List<PostDTO> toDTOList(List<Post> entityList) {
+        return entityList.stream().map(PostMapper::toDTO).toList();
+    }
+
+    public static List<Post> toEntityList(List<PostDTO> dtoList) {
+        return dtoList.stream().map(PostMapper::toEntity).toList();
     }
 }
