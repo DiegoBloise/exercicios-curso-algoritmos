@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -34,6 +35,11 @@ public class PostResource {
     @GetMapping("/{id}")
     public ResponseEntity<PostDTO> findById(@PathVariable String id) {
         return ResponseEntity.ok(service.findById(id));
+    }
+
+    @GetMapping("/titlesearch")
+    public ResponseEntity<List<PostDTO>> findByTitle(@RequestParam String text) {
+        return ResponseEntity.ok(service.findByTitle(text));
     }
 
     @PostMapping

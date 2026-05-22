@@ -33,6 +33,13 @@ public class PostService {
         return PostMapper.toDTO(post);
     }
 
+    public List<PostDTO> findByTitle(String search) {
+        return repository.findByTitleContainingIgnoreCase(search)
+                .stream()
+                .map(PostMapper::toDTO)
+                .toList();
+    }
+
     public PostDTO insert(PostDTO dto) {
         Post newPost = PostMapper.toEntity(dto);
         return PostMapper.toDTO(repository.insert(newPost));
