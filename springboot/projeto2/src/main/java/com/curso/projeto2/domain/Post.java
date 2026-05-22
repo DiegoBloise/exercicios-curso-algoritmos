@@ -2,8 +2,12 @@ package com.curso.projeto2.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.curso.projeto2.dto.CommentDTO;
 
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -30,6 +34,8 @@ public class Post implements Serializable {
     private String body;
 
     private User author;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(LocalDate date, String title, String body, User author) {
         this.date = date;

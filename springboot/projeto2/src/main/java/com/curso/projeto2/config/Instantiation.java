@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.curso.projeto2.domain.Post;
 import com.curso.projeto2.domain.User;
+import com.curso.projeto2.dto.CommentDTO;
+import com.curso.projeto2.mapper.UserMapper;
 import com.curso.projeto2.repository.PostRepository;
 import com.curso.projeto2.repository.UserRepository;
 
@@ -41,6 +43,22 @@ public class Instantiation implements CommandLineRunner {
                 "Bom dia",
                 "Acordei feliz hoje!",
                 user1);
+
+        CommentDTO comment1 = new CommentDTO(
+                "Boa viagem mano!",
+                LocalDate.parse("2018-03-21"),
+                UserMapper.toDTO(user2));
+        CommentDTO comment2 = new CommentDTO(
+                "Aproveite",
+                LocalDate.parse("2018-03-22"),
+                UserMapper.toDTO(user3));
+        CommentDTO comment3 = new CommentDTO(
+                "Tenha um ótimo dia!",
+                LocalDate.parse("2018-03-23"),
+                UserMapper.toDTO(user2));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().add(comment3);
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 

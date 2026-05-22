@@ -13,7 +13,8 @@ public class PostMapper {
                 entity.getDate(),
                 entity.getTitle(),
                 entity.getBody(),
-                UserMapper.toDTO(entity.getAuthor()));
+                UserMapper.toDTO(entity.getAuthor()),
+                entity.getComments());
     }
 
     public static Post toEntity(PostDTO dto) {
@@ -22,7 +23,8 @@ public class PostMapper {
                 dto.date(),
                 dto.title(),
                 dto.body(),
-                UserMapper.toEntity(dto.author()));
+                UserMapper.toEntity(dto.author()),
+                dto.comments());
     }
 
     public static List<PostDTO> toDTOList(List<Post> entityList) {
