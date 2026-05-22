@@ -1,5 +1,6 @@
 package com.curso.projeto2.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -35,6 +36,14 @@ public class PostService {
 
     public List<PostDTO> findByTitle(String search) {
         return repository.findByTitleContainingIgnoreCase(search)
+                .stream()
+                .map(PostMapper::toDTO)
+                .toList();
+    }
+
+    public List<PostDTO> fullSearch(String search, LocalDate minDate, LocalDate maxDate) {
+        maxDate = maxDate.plusDays(1);
+        return repository.fullSearch(search, minDate, maxDate)
                 .stream()
                 .map(PostMapper::toDTO)
                 .toList();

@@ -1,6 +1,7 @@
 package com.curso.projeto2.resource;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,14 @@ public class PostResource {
     @GetMapping("/titlesearch")
     public ResponseEntity<List<PostDTO>> findByTitle(@RequestParam String text) {
         return ResponseEntity.ok(service.findByTitle(text));
+    }
+
+    @GetMapping("/fullsearch")
+    public ResponseEntity<List<PostDTO>> fullSearch(
+            @RequestParam String text,
+            @RequestParam LocalDate minDate,
+            @RequestParam LocalDate maxDate) {
+        return ResponseEntity.ok(service.fullSearch(text, minDate, maxDate));
     }
 
     @PostMapping
