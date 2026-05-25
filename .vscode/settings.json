@@ -25,5 +25,6 @@
       "name": "Preset Connection",
       "connectionString": "mongodb://localhost:27017"
     }
-  ]
+  ],
+  "java.debug.settings.onBuildFailureProceed": true
 }
