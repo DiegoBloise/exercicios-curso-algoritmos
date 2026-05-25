@@ -15,8 +15,8 @@
          </font>
       </Label>
       <Label text="Cadastro de novo usuário" />
-      <TextField focusTraversable="false" promptText="Usuário" />
-      <TextField accessibleRole="PASSWORD_FIELD" focusTraversable="false" promptText="Senha" />
+      <TextField promptText="Usuário" />
+      <TextField accessibleRole="PASSWORD_FIELD" promptText="Senha" />
       <Button fx:id="primaryButton" onAction="#realizarLogin" text="Login" />
    </children>
    <padding>
