@@ -1,15 +1,17 @@
-package com.curso;
+package com.curso.controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.curso.App;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
-public class MainViewController implements Initializable {
+public class MainController implements Initializable {
 
     @FXML
     private MenuItem menuItemSeller;
@@ -25,22 +27,30 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSellerAction() {
-        System.out.println("Seller Action");
+        changeView("seller");
     }
 
     @FXML
     public void onMenuItemDepartmentAction() {
-        System.out.println("Department Action");
+        changeView("department");
     }
 
     @FXML
-    public void onMenuItemAboutAction() throws IOException {
-        contentConteiner.getChildren().clear();
-        contentConteiner.getChildren().add(App.loadFXML("about"));
+    public void onMenuItemAboutAction() {
+        changeView("about");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    private void changeView(String view) {
+        try {
+            contentConteiner.getChildren().clear();
+            contentConteiner.getChildren().add(App.loadFXML(view));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

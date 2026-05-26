@@ -18,12 +18,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        ScrollPane scrollPane = (ScrollPane) loadFXML("main-view");
+        ScrollPane scrollPane = (ScrollPane) loadFXML("main");
 
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
-        scene = new Scene(scrollPane, 640, 480);
+        scene = new Scene(scrollPane, 500, 480);
+
         stage.setScene(scene);
         stage.show();
     }
