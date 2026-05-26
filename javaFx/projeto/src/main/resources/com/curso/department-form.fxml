@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="50.0" prefWidth="254.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="203.0" prefWidth="254.0">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="254.0">
+               <children>
+                  <VBox prefHeight="84.0" prefWidth="187.0">
+                     <children>
+                        <Label text="New Department">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                              <Label text="New department form" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <GridPane hgap="5.0" prefHeight="154.0" prefWidth="336.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="ID" />
+                  <TextField prefWidth="97.0" GridPane.rowIndex="1" />
+                  <Label textFill="RED" GridPane.rowIndex="2" />
+                  <Label text="Name" GridPane.columnIndex="1" />
+                  <TextField layoutX="110.0" layoutY="13.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label layoutX="210.0" layoutY="17.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <HBox alignment="BOTTOM_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Button mnemonicParsing="false" text="Cancel" />
+                        <Button mnemonicParsing="false" text="Save" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
