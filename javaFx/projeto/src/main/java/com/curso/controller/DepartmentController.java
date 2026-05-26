@@ -35,7 +35,7 @@ public class DepartmentController implements Initializable {
     private Button btnNew;
 
     @FXML
-    public void ontBtnAction() {
+    public void onBtnAction() {
 
     }
 
