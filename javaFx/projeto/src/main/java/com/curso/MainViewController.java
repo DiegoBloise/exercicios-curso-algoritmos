@@ -1,11 +1,13 @@
 package com.curso;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.Pane;
 
 public class MainViewController implements Initializable {
 
@@ -19,6 +21,9 @@ public class MainViewController implements Initializable {
     private MenuItem menuItemAbout;
 
     @FXML
+    private Pane contentConteiner;
+
+    @FXML
     public void onMenuItemSellerAction() {
         System.out.println("Seller Action");
     }
@@ -29,8 +34,9 @@ public class MainViewController implements Initializable {
     }
 
     @FXML
-    public void onMenuItemAboutAction() {
-        System.out.println("About Action");
+    public void onMenuItemAboutAction() throws IOException {
+        contentConteiner.getChildren().clear();
+        contentConteiner.getChildren().add(App.loadFXML("about"));
     }
 
     @Override
