@@ -4,7 +4,7 @@ module com.curso {
     requires java.sql;
 
     opens com.curso.controller to javafx.fxml;
-    opens com.curso to javafx.fxml;
+    opens com.curso.model to javafx.base;
 
     exports com.curso;
 }
