@@ -2,26 +2,32 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <children>
-            <Label text="About">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Label>
-                  <Label text="About view" />
+            <VBox>
+               <children>
+                  <Label text="About">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                        <Label text="About view" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
       </VBox>
-   </children>
-</VBox>
+   </content>
+</ScrollPane>
