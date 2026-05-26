@@ -5,9 +5,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.curso.App;
+import com.curso.util.Alerts;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
@@ -50,7 +52,8 @@ public class MainController implements Initializable {
             contentConteiner.getChildren().clear();
             contentConteiner.getChildren().add(App.loadFXML(view));
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Erro ao mudar view: " + e.getMessage());
+            Alerts.showAlert("Erro ao atualizar tabela", null, e.getMessage(), AlertType.ERROR);
         }
     }
 }

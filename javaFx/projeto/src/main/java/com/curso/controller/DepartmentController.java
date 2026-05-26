@@ -6,11 +6,13 @@ import java.util.ResourceBundle;
 
 import com.curso.model.Department;
 import com.curso.service.DepartmentService;
+import com.curso.util.Alerts;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,7 +52,10 @@ public class DepartmentController implements Initializable {
 
     public void updateTableView() {
         if (service == null) {
-            throw new IllegalStateException("Service is null");
+            String msg = "Service is null";
+            System.out.println("Erro ao atualizar tabela: " + msg);
+            Alerts.showAlert("Erro ao atualizar tabela", null, msg, AlertType.ERROR);
+            throw new IllegalStateException(msg);
         }
 
         List<Department> departments = service.findAll();

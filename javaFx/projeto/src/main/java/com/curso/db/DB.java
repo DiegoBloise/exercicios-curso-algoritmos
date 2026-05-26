@@ -10,9 +10,6 @@ import java.sql.Statement;
 import java.util.Properties;
 
 import com.curso.db.exceptions.DbException;
-import com.curso.util.Alerts;
-
-import javafx.scene.control.Alert.AlertType;
 
 public class DB {
 
@@ -25,7 +22,6 @@ public class DB {
             try {
                 conn = DriverManager.getConnection(url, props);
             } catch (SQLException e) {
-                Alerts.showAlert("Erro ao abrir conexão com o banco de dados", null, e.getMessage(), AlertType.ERROR);
                 throw new DbException(e.getMessage());
             }
         }
@@ -37,7 +33,6 @@ public class DB {
             try {
                 conn.close();
             } catch (SQLException e) {
-                Alerts.showAlert("Erro ao fechar conexão com o banco de dados", null, e.getMessage(), AlertType.ERROR);
                 throw new DbException(e.getMessage());
             }
         }
@@ -49,7 +44,6 @@ public class DB {
             props.load(fs);
             return props;
         } catch (IOException e) {
-            Alerts.showAlert("Erro ao carregar arquivo de configuração", null, e.getMessage(), AlertType.ERROR);
             throw new DbException(e.getMessage());
         }
     }
@@ -59,7 +53,6 @@ public class DB {
             try {
                 st.close();
             } catch (SQLException e) {
-                Alerts.showAlert("Erro ao fechar conexão com o banco de dados", null, e.getMessage(), AlertType.ERROR);
                 throw new DbException(e.getMessage());
             }
         }
@@ -70,7 +63,6 @@ public class DB {
             try {
                 rs.close();
             } catch (SQLException e) {
-                Alerts.showAlert("Erro ao fechar conexão com o banco de dados", null, e.getMessage(), AlertType.ERROR);
                 throw new DbException(e.getMessage());
             }
         }
