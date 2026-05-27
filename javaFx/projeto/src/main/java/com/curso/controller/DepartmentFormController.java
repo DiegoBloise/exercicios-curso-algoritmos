@@ -4,9 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.curso.model.Department;
+import com.curso.service.DepartmentService;
 import com.curso.util.Alerts;
 import com.curso.util.Constraints;
+import com.curso.util.Utils;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
@@ -17,6 +20,8 @@ import javafx.scene.control.TextField;
 public class DepartmentFormController implements Initializable {
 
     private Department department;
+
+    private DepartmentService service;
 
     @FXML
     private TextField textFieldId;
@@ -34,13 +39,24 @@ public class DepartmentFormController implements Initializable {
     private Button btnCancel;
 
     @FXML
-    public void onBtnSaveAction() {
-        System.out.println("save action");
+    public void onBtnSaveAction(ActionEvent event) {
+        department = getFormData();
+        service.saveOrUpdate(department);
+        Utils.currentStage(event).close();
     }
 
     @FXML
-    public void onBtnCancelAction() {
-        System.out.println("cancel action");
+    public void onBtnCancelAction(ActionEvent event) {
+        Utils.currentStage(event).close();
+    }
+
+    private Department getFormData() {
+        department = new Department();
+
+        department.setId(Utils.tryParseToInt(textFieldId.getText()));
+        department.setName(textFieldName.getText());
+
+        return department;
     }
 
     public void updateFormData() {
@@ -63,9 +79,14 @@ public class DepartmentFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeNodes();
+        service = new DepartmentService();
     }
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public void setDepartmentService(DepartmentService service) {
+        this.service = service;
     }
 }
