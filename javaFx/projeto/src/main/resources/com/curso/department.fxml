@@ -33,7 +33,7 @@
       
             <ToolBar>
               <items>
-                <Button fx:id="btnNew" mnemonicParsing="false" onAction="#onBtnAction" text="New" />
+                <Button fx:id="btnNew" mnemonicParsing="false" onAction="#onBtnNewAction" text="New" />
               </items>
             </ToolBar>
             <TableView fx:id="tableViewDepartment">

@@ -3,6 +3,7 @@ module com.curso {
     requires transitive javafx.fxml;
     requires java.sql;
 
+    opens com.curso to javafx.fxml;
     opens com.curso.controller to javafx.fxml;
     opens com.curso.model to javafx.base;
 
