@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="203.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.curso.controller.SellerFormController">
+   <children>
+      <VBox prefHeight="320.0" prefWidth="349.0">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="254.0">
+               <children>
+                  <VBox prefHeight="84.0" prefWidth="187.0">
+                     <children>
+                        <Label text="New Seller">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                              <Label text="New seller form" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <GridPane hgap="5.0" prefHeight="230.0" prefWidth="349.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="ID" />
+                  <TextField fx:id="textFieldId" disable="true" editable="false" prefWidth="97.0" GridPane.rowIndex="1" />
+                  <Label text="Name" GridPane.columnIndex="1" />
+                  <TextField fx:id="textFieldName" layoutX="110.0" layoutY="13.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="labelErrorName" layoutX="210.0" layoutY="17.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label layoutX="30.0" layoutY="19.0" text="Email" GridPane.rowIndex="3" />
+                  <TextField fx:id="textFieldName1" layoutX="187.0" layoutY="49.0" GridPane.rowIndex="4" />
+                  <Label fx:id="labelErrorEmail" layoutX="187.0" layoutY="59.0" textFill="RED" GridPane.rowIndex="5" />
+                  <Label layoutX="187.0" layoutY="19.0" text="Birth Date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelErrorBirthDate" layoutX="30.0" layoutY="128.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label layoutX="30.0" layoutY="121.0" text="Base Salary" GridPane.rowIndex="6" />
+                  <TextField fx:id="textFieldName111" layoutX="187.0" layoutY="151.0" GridPane.rowIndex="7" />
+                  <Label fx:id="labelErrorBaseSalary" layoutX="187.0" layoutY="128.0" textFill="RED" GridPane.rowIndex="8" />
+                  <HBox alignment="BOTTOM_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <children>
+                        <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onBtnCancelAction" text="Cancel" />
+                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtnSaveAction" text="Save" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
