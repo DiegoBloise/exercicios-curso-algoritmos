@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -156,9 +157,10 @@ public class DepartmentController implements Initializable, DataChangeListener {
 
     private void createDialogForm(Department department, String fxml, Stage parentStage) {
         try {
-            Parent parent = App.loadFXML(fxml);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+            Parent parent = loader.load();
 
-            DepartmentFormController controller = (DepartmentFormController) App.getController(fxml);
+            DepartmentFormController controller = loader.getController();
             controller.setDepartment(department);
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();

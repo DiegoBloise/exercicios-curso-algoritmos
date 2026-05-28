@@ -49,7 +49,7 @@
               </rowConstraints>
                <children>
                   <Label text="ID" />
-                  <TextField fx:id="textFieldId" prefWidth="97.0" GridPane.rowIndex="1" />
+                  <TextField fx:id="textFieldId" disable="true" editable="false" prefWidth="97.0" GridPane.rowIndex="1" />
                   <Label text="Name" GridPane.columnIndex="1" />
                   <TextField fx:id="textFieldName" layoutX="110.0" layoutY="13.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="labelNameError" layoutX="210.0" layoutY="17.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
