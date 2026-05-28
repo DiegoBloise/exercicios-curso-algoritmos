@@ -12,6 +12,7 @@ import com.curso.service.DepartmentService;
 import com.curso.util.Alerts;
 import com.curso.util.Utils;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,12 +45,43 @@ public class DepartmentController implements Initializable, DataChangeListener {
     private TableColumn<Department, String> tableColumnName;
 
     @FXML
+    private TableColumn<Department, Department> tableColumnEdit;
+
+    @FXML
     private Button btnNew;
 
     @FXML
     public void onBtnNewAction(ActionEvent event) {
         Department newDepartment = new Department();
         createDialogForm(newDepartment, "department-form", Utils.currentStage(event));
+    }
+
+    private void initEditButtons() {
+        tableColumnEdit.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+
+        tableColumnEdit.setCellFactory(
+                param -> new TableCell<Department, Department>() {
+
+                    private final Button button = new Button("edit");
+
+                    @Override
+                    protected void updateItem(Department department, boolean empty) {
+                        super.updateItem(department, empty);
+
+                        if (department == null) {
+                            setGraphic(null);
+                            return;
+                        }
+
+                        setGraphic(button);
+                        button.setOnAction(
+                                event -> createDialogForm(
+                                        department,
+                                        "department-form",
+                                        Utils.currentStage(event)));
+                    }
+                });
     }
 
     @Override
@@ -71,6 +104,8 @@ public class DepartmentController implements Initializable, DataChangeListener {
         List<Department> departments = service.findAll();
         obsDepartments = FXCollections.observableArrayList(departments);
         tableViewDepartment.setItems(obsDepartments);
+
+        initEditButtons();
     }
 
     private void createDialogForm(Department department, String fxml, Stage parentStage) {
@@ -82,13 +117,13 @@ public class DepartmentController implements Initializable, DataChangeListener {
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
-            Stage dialoStage = new Stage();
-            dialoStage.setTitle("Enter Department data");
-            dialoStage.setScene(new Scene(parent));
-            dialoStage.setResizable(false);
-            dialoStage.initOwner(parentStage);
-            dialoStage.initModality(Modality.WINDOW_MODAL);
-            dialoStage.showAndWait();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Enter Department data");
+            dialogStage.setScene(new Scene(parent));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parentStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
         } catch (IOException e) {
             System.out.println("Erro ao criar dialog: " + e.getMessage());
             Alerts.showAlert("Erro ao criar dialog", null, e.getMessage(), AlertType.ERROR);
