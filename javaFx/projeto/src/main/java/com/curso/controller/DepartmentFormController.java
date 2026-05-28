@@ -3,10 +3,13 @@ package com.curso.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import com.curso.listeners.DataChangeListener;
 import com.curso.model.Department;
+import com.curso.model.exceptions.ValidationException;
 import com.curso.service.DepartmentService;
 import com.curso.util.Alerts;
 import com.curso.util.Constraints;
@@ -45,10 +48,14 @@ public class DepartmentFormController implements Initializable {
 
     @FXML
     public void onBtnSaveAction(ActionEvent event) {
-        department = getFormData();
-        service.saveOrUpdate(department);
-        notifyDataChangeListeners();
-        Utils.currentStage(event).close();
+        try {
+            department = getFormData();
+            service.saveOrUpdate(department);
+            notifyDataChangeListeners();
+            Utils.currentStage(event).close();
+        } catch (ValidationException e) {
+            setErrorMessages(e.getErrors());
+        }
     }
 
     @FXML
@@ -64,11 +71,21 @@ public class DepartmentFormController implements Initializable {
         dataChangeListeners.forEach(DataChangeListener::onDataChanged);
     }
 
-    private Department getFormData() {
+    private Department getFormData() throws ValidationException {
         department = new Department();
 
+        ValidationException exception = new ValidationException("Validation error");
+
         department.setId(Utils.tryParseToInt(textFieldId.getText()));
+
+        if (textFieldName.getText() == null || textFieldName.getText().trim().equals("")) {
+            exception.addError("name", "Field name can't be empty.");
+        }
         department.setName(textFieldName.getText());
+
+        if (exception.getErrors().size() > 0) {
+            throw exception;
+        }
 
         return department;
     }
@@ -83,6 +100,14 @@ public class DepartmentFormController implements Initializable {
 
         textFieldId.setText(String.valueOf(department.getId()));
         textFieldName.setText(String.valueOf(department.getName()));
+    }
+
+    private void setErrorMessages(Map<String, String> errors) {
+        Set<String> fields = errors.keySet();
+
+        if (fields.contains("name")) {
+            labelNameError.setText(errors.get("name"));
+        }
     }
 
     private void initializeNodes() {
