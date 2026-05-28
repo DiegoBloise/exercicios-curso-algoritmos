@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.curso.App;
+import com.curso.listeners.DataChangeListener;
 import com.curso.model.Department;
 import com.curso.service.DepartmentService;
 import com.curso.util.Alerts;
@@ -26,7 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class DepartmentController implements Initializable {
+public class DepartmentController implements Initializable, DataChangeListener {
 
     private DepartmentService service;
 
@@ -78,6 +79,7 @@ public class DepartmentController implements Initializable {
 
             DepartmentFormController controller = (DepartmentFormController) App.getController(fxml);
             controller.setDepartment(department);
+            controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
             Stage dialoStage = new Stage();
@@ -95,5 +97,10 @@ public class DepartmentController implements Initializable {
 
     public void setDepartmentService(DepartmentService service) {
         this.service = service;
+    }
+
+    @Override
+    public void onDataChanged() {
+        updateTableView();
     }
 }

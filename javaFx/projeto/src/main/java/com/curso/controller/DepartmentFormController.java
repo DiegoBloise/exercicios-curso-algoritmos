@@ -1,8 +1,11 @@
 package com.curso.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.curso.listeners.DataChangeListener;
 import com.curso.model.Department;
 import com.curso.service.DepartmentService;
 import com.curso.util.Alerts;
@@ -23,6 +26,8 @@ public class DepartmentFormController implements Initializable {
 
     private DepartmentService service;
 
+    private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+
     @FXML
     private TextField textFieldId;
 
@@ -42,12 +47,21 @@ public class DepartmentFormController implements Initializable {
     public void onBtnSaveAction(ActionEvent event) {
         department = getFormData();
         service.saveOrUpdate(department);
+        notifyDataChangeListeners();
         Utils.currentStage(event).close();
     }
 
     @FXML
     public void onBtnCancelAction(ActionEvent event) {
         Utils.currentStage(event).close();
+    }
+
+    public void subscribeDataChangeListener(DataChangeListener listener) {
+        dataChangeListeners.add(listener);
+    }
+
+    public void notifyDataChangeListeners() {
+        dataChangeListeners.forEach(DataChangeListener::onDataChanged);
     }
 
     private Department getFormData() {
