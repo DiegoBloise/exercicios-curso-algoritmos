@@ -114,9 +114,26 @@ public class SellerFormController implements Initializable {
         seller.setId(Utils.tryParseToInt(textFieldId.getText()));
 
         if (textFieldName.getText() == null || textFieldName.getText().trim().equals("")) {
-            exception.addError("name", "Field name can't be empty.");
+            exception.addError("name", "Field 'Name' can't be empty.");
         }
         seller.setName(textFieldName.getText());
+
+        if (textFieldEmail.getText() == null || textFieldEmail.getText().trim().equals("")) {
+            exception.addError("email", "Field 'Email' can't be empty.");
+        }
+        seller.setEmail(textFieldEmail.getText());
+
+        if (datePickerBirthDate.getValue() == null) {
+            exception.addError("birthDate", "Field 'Birth Date' can't be empty.");
+        }
+        seller.setBirthDate(datePickerBirthDate.getValue());
+
+        if (textFieldBaseSalary.getText() == null || textFieldBaseSalary.getText().trim().equals("")) {
+            exception.addError("baseSalary", "Field 'Base Salary' can't be empty.");
+        }
+        seller.setBaseSalary(Utils.tryParseToDouble(textFieldBaseSalary.getText()));
+
+        seller.setDepartment(comboBoxDepartment.getValue());
 
         if (exception.getErrors().size() > 0) {
             throw exception;
@@ -151,9 +168,10 @@ public class SellerFormController implements Initializable {
     private void setErrorMessages(Map<String, String> errors) {
         Set<String> fields = errors.keySet();
 
-        if (fields.contains("name")) {
-            labelErrorName.setText(errors.get("name"));
-        }
+        labelErrorName.setText(fields.contains("name") ? errors.get("name") : "");
+        labelErrorEmail.setText(fields.contains("email") ? errors.get("email") : "");
+        labelErrorBirthDate.setText(fields.contains("birthDate") ? errors.get("birthDate") : "");
+        labelErrorBaseSalary.setText(fields.contains("baseSalary") ? errors.get("baseSalary") : "");
     }
 
     private void initializeNodes() {
