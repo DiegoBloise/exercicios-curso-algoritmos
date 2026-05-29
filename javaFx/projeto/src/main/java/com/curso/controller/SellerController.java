@@ -179,6 +179,7 @@ public class SellerController implements Initializable, DataChangeListener {
             SellerFormController controller = loader.getController();
             controller.setSeller(seller);
             controller.subscribeDataChangeListener(this);
+            controller.loadDepartments();
             controller.updateFormData();
 
             Stage dialogStage = new Stage();

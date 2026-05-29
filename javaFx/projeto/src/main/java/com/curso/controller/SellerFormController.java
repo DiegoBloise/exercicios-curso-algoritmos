@@ -9,29 +9,41 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.curso.listeners.DataChangeListener;
+import com.curso.model.Department;
 import com.curso.model.Seller;
 import com.curso.model.exceptions.ValidationException;
+import com.curso.service.DepartmentService;
 import com.curso.service.SellerService;
 import com.curso.util.Alerts;
 import com.curso.util.Constraints;
 import com.curso.util.Utils;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.util.Callback;
 
 public class SellerFormController implements Initializable {
 
     private Seller seller;
 
-    private SellerService service;
+    private SellerService sellerService;
+
+    private DepartmentService departmentService;
 
     private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+
+    private ObservableList<Department> obsDepartments;
 
     @FXML
     private TextField textFieldId;
@@ -47,6 +59,9 @@ public class SellerFormController implements Initializable {
 
     @FXML
     private TextField textFieldBaseSalary;
+
+    @FXML
+    private ComboBox<Department> comboBoxDepartment;
 
     @FXML
     private Label labelErrorName;
@@ -70,7 +85,7 @@ public class SellerFormController implements Initializable {
     public void onBtnSaveAction(ActionEvent event) {
         try {
             seller = getFormData();
-            service.saveOrUpdate(seller);
+            sellerService.saveOrUpdate(seller);
             notifyDataChangeListeners();
             Utils.currentStage(event).close();
         } catch (ValidationException e) {
@@ -125,6 +140,12 @@ public class SellerFormController implements Initializable {
         textFieldEmail.setText(seller.getEmail());
         textFieldBaseSalary.setText(String.format("%.2f", seller.getBaseSalary()));
         datePickerBirthDate.setValue(seller.getBirthDate());
+
+        if (seller.getDepartment() == null) {
+            comboBoxDepartment.getSelectionModel().selectFirst();
+        } else {
+            comboBoxDepartment.setValue(seller.getDepartment());
+        }
     }
 
     private void setErrorMessages(Map<String, String> errors) {
@@ -141,12 +162,38 @@ public class SellerFormController implements Initializable {
         Constraints.setTextFieldDouble(textFieldBaseSalary);
         Constraints.setTextFieldMaxLength(textFieldEmail, 60);
         Utils.formatDatePicker(datePickerBirthDate, "dd/MM/yyyy");
+        initializeComboBoxDepartment();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeNodes();
-        service = new SellerService();
+        sellerService = new SellerService();
+        departmentService = new DepartmentService();
+    }
+
+    public void loadDepartments() {
+        if (seller == null) {
+            String msg = "Department service is null";
+            System.out.println("Erro ao carregar departamentos: " + msg);
+            Alerts.showAlert("Erro ao carregar departamentos", null, msg, AlertType.ERROR);
+            throw new IllegalStateException(msg);
+        }
+        List<Department> departments = departmentService.findAll();
+        obsDepartments = FXCollections.observableArrayList(departments);
+        comboBoxDepartment.setItems(obsDepartments);
+    }
+
+    private void initializeComboBoxDepartment() {
+        Callback<ListView<Department>, ListCell<Department>> factory = lv -> new ListCell<Department>() {
+            @Override
+            protected void updateItem(Department item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+        };
+        comboBoxDepartment.setCellFactory(factory);
+        comboBoxDepartment.setButtonCell(factory.call(null));
     }
 
     public void setSeller(Seller seller) {
@@ -154,6 +201,6 @@ public class SellerFormController implements Initializable {
     }
 
     public void setSellerService(SellerService service) {
-        this.service = service;
+        this.sellerService = service;
     }
 }
